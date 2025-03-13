@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-screen h-screen pt-4 pb-4 pr-16 pl-16 little-prince">
     <img src="../assets/covers/978-0-15-601404-5.jpg" alt="Book cover" class="h-full absolute right-0 bottom-0" />
-    <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+    <!-- <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas> -->
     <header class="flex flex-wrap gap-4 items-center mb-6">
       <!-- Wybór trybu -->
       <select v-model="selectedFilter" class="p-2 border rounded-md bg-white shadow">
