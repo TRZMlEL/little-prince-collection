@@ -73,11 +73,12 @@ export default class Three {
     
     this.dummy = new T.Mesh(
         // new T.PlaneGeometry(0.6, 0.6, 20, 20),
-        new T.SphereGeometry(0.2, 10, 10),
+        new T.SphereGeometry(0.05, 20, 20),
         new T.MeshBasicMaterial({
             color: 0xffffff, 
             // map: new T.TextureLoader().load(particle),
-            // transparent: true
+            transparent: true,
+            opacity: 1.
         })
     );
     this.scene.add(this.dummy);

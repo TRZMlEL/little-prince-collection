@@ -113,7 +113,7 @@ void main() {
   vec4 gradientColor = vec4(gradient, 0.5);
   vec3 lcolor = mix(vec3(1.), gradient, color.r);
 
-  vec3 waterColor = blendDarken(prev.rgb, floodcolor*(1.+0.02), 0.7);
+  vec3 waterColor = blendDarken(prev.rgb, floodcolor*(1.+0.02), 0.4);
 
   vec3 finalColor = blendDarken(waterColor, lcolor, 1.);
 
@@ -122,5 +122,4 @@ void main() {
   gl_FragColor = vec4(finalColor.rgb,1.);
 
   gl_FragColor = vec4(min(bgColor, finalColor*(1. + 0.001) + 0.005),1.);
-  
 }
