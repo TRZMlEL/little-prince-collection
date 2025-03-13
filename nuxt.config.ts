@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     baseURL: '/little-prince/', // Zmień na nazwę repozytorium
   },
   routeRules: {
-    '/**': { prerender: true } // Generowanie statycznych plików
+    '/**': { prerender: false } // Generowanie statycznych plików
   },
   ssr: false,
   compatibilityDate: "2024-11-01",
@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      failOnError: false,
+      failOnError: true,
     },
   }
 });
