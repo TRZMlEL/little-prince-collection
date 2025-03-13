@@ -19,4 +19,9 @@ export default defineNuxtConfig({
       glsl(),
     ],
   },
+  nitro: {
+    prerender: {
+      failOnError: false,
+    },
+  }
 });
