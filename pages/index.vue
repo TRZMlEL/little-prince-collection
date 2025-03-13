@@ -73,6 +73,9 @@ const router = useRouter();
 gsap.registerPlugin(ScrollTrigger);
 
 onMounted(async () => {
+  const covers = document.querySelector('.covers');
+  const titles = document.querySelector('.titles');
+
   const response = await fetch('/books.json')
   books.value = await response.json()
 
@@ -85,7 +88,7 @@ onMounted(async () => {
   // GSAP
   await nextTick(); // Ensure the elements are in the DOM
 
-  gsap.from(".covers" , {
+  gsap.from('.covers' , {
   y: 70,            // Startowe przesunięcie w dół
   opacity: 0,       // Zanikający efekt
   rotationX: -25,    // Pochylenie do przodu
@@ -94,21 +97,21 @@ onMounted(async () => {
   ease: "power1.inOut",
   stagger: 0.2,     // Dodanie opóźnienia między elementami
   scrollTrigger: {
-    trigger: ".covers",
+    trigger: covers,
     start: "top 80%", // Animacja startuje, gdy 80% elementu wejdzie na ekran
     toggleActions: "play none none none",
     once: false       // Animacja uruchamia się tylko raz
   }
 });
 
-  gsap.from(".titles", {
+  gsap.from('.titles', {
     x: -50,            // Startowe przesunięcie w dół
     opacity: 0,       // Zanikający efekt
     duration: 1.2,
     ease: "power3.out",
     stagger: 0.2,     // Dodanie opóźnienia między elementami
     scrollTrigger: {
-      trigger: ".titles",
+      trigger: titles,
       start: "top 100%", // Animacja startuje, gdy 80% elementu wejdzie na ekran
       toggleActions: "play none none none",
       once: true       // Animacja uruchamia się tylko raz
