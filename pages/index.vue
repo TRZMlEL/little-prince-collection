@@ -59,7 +59,7 @@ import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Three from './three';
+// import Three from './three';
 
 const books = ref([]);
 const selectedFilter = ref('owned');
@@ -80,10 +80,10 @@ onMounted(async () => {
   books.value = await response.json()
 
 // THREE.JS
-  const canvas = document.querySelector('#background-canvas');
-    if (canvas) {
-      new Three(canvas);
-    }
+  // const canvas = document.querySelector('#background-canvas');
+  //   if (canvas) {
+  //     new Three(canvas);
+  //   }
 
   // GSAP
   await nextTick(); // Ensure the elements are in the DOM
