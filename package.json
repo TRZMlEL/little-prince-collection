@@ -1,7 +1,45 @@
 {
-  "name": "nuxt-app",
+  "name": "little-prince-collection",
+  "version": "1.0.0",
+  "description": "A collection of The Little Prince books in different languages",
   "private": true,
-  "type": "module",
+  "license": "MPL-2.0",
+  "author": {
+    "name": "Mateusz Trzmiel",
+    "email": "mateusz@trzmiel.art",
+    "url": "https://trzmiel.art"
+  },
+  "contributors": [
+    {
+      "name": "Oliwia Kurzeja"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TRZMlEL/little-prince-collection"
+  },
+  "homepage": "https://TRZMlEL.github.io/little-prince-collection",
+  "bugs": {
+    "url": "https://github.com/TRZMlEL/little-prince-collection/issues",
+    "email": "mateusz@trzmiel.art"
+  },
+  "keywords": [
+    "nuxt",
+    "vue",
+    "three.js",
+    "gsap",
+    "books",
+    "collection",
+    "bookshelf",
+    "library",
+    "literature",
+    "The Little Prince",
+    "Antoine de Saint-Exupéry"
+  ],
+  "engines": {
+  "node": ">=18.12.0 <23",
+  "npm": ">=11.0.0"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
