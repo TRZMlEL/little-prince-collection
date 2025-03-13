@@ -21,7 +21,8 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      failOnError: false,
+      crawlLinks: false, // Wyłącza automatyczne znajdowanie stron do prerenderowania
+      routes: [] // Nie renderuje żadnych tras
     },
   }
 });
