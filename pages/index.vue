@@ -1,6 +1,6 @@
 <template>
-  <div class="relative w-screen h-screen pt-4 pb-4 pr-16 pl-16">
-    <img src="../assets/images/book-cover.jpg" alt="Book cover" class="h-full absolute right-0 bottom-0" />
+  <div class="relative w-screen h-screen pt-4 pb-4 pr-16 pl-16 little-prince">
+    <img src="" alt="Book cover" class="h-full absolute right-0 bottom-0" />
     <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
     <header class="flex flex-wrap gap-4 items-center mb-6">
       <!-- Wybór trybu -->

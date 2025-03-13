@@ -3,7 +3,6 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import fragment from '../assets/shaders/fragment.glsl';
 import fragmentFBO from '../assets/shaders/fbo.glsl';
 import vertex from '../assets/shaders/vertex.glsl';
-import particle from '../assets/textures/particle.png?url';
 
 const device = {
   width: window.innerWidth,

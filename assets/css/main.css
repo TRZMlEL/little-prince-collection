@@ -1,2 +1,42 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: 'fa-brands-400';
+    src: url('@/assets/fonts/font-awesome/fa-brands-400.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'fa-regular-400';
+    src: url('@/assets/fonts/font-awesome/fa-regular-400.ttf') format('truetype'),
+         url('@/assets/fonts/font-awesome/fa-regular-400.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'fa-solid-900';
+    src: url('@/assets/fonts/font-awesome/fa-solid-900.ttf') format('truetype'),
+         url('@/assets/fonts/font-awesome/fa-solid-900.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'little-prince';
+    src: url('@/assets/fonts/little-prince/little-prince-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+    --font-little-prince: "little-prince";
+    --font-fa-solid: "fa-solid-900";
+    --font-fa-regular: "fa-regular-400";
+    --font-fa-brands: "fa-brands-400";
+}
