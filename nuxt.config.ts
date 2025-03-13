@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      failOnError: true,
+      failOnError: false,
     },
   }
 });
