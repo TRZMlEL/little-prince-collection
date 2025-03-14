@@ -14,9 +14,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20.17.0"
+      
+      - name: Update npm to latest version
+        run: npm install -g npm@latest
+      
+      - run: npm --version
+      
       # Pick your own package manager and build script
       - run: npm install
+      
       - run: NUXT_APP_BASE_URL=/little-prince-collection/ npx nuxt build --preset github_pages
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -37,8 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
-        # id: deployment
-        # uses: actions/deploy-pages@v4
-        run: npx gh-pages --dotfiles -d .output/public
+        id: deployment
+        uses: actions/deploy-pages@v4
 
         
