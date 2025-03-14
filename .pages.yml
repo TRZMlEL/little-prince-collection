@@ -6,7 +6,7 @@ content:
     path: public/books.json
     fields:
       - { name: isbn, label: ISBN, type: string }
-      - { name: owned, label: Posiadane?, type: boolean, default: trie }
+      - { name: owned, label: Posiadane?, type: boolean, default: true}
       - { name: cover, label: Okładka, type: image }
       - { name: language, label: Język, type: select, options: { 
         values: [ 
@@ -31,3 +31,8 @@ content:
           Australia,
           Ameryka Południowa,
           ] } }
+      - { name: translator, label: Tłumaczenie, type: string }
+      - { name: title, label: Tytuł, type: string }
+      - { name: year, label: Rok, type: string }
+      - { name: author, label: Autor, type: string, default: "Antoine de Saint-Exupéry" }
+      
