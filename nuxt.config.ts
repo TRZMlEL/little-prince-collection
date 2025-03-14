@@ -19,10 +19,10 @@ export default defineNuxtConfig({
       glsl(),
     ],
   },
-  nitro: {
-    prerender: {
-      crawlLinks: false, // Wyłącza automatyczne znajdowanie stron do prerenderowania
-      routes: [] // Nie renderuje żadnych tras
-    },
-  },
+  // nitro: {
+  //   prerender: {
+  //     crawlLinks: false, // Wyłącza automatyczne znajdowanie stron do prerenderowania
+  //     routes: [] // Nie renderuje żadnych tras
+  //   },
+  // },
 });
