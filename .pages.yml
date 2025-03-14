@@ -1,14 +1,38 @@
-media: public
+media: assets/covers
 content:
   - name: books
     label: Books
     type: file
     path: public/books.json
     fields:
-      - { name: title, label: Title, type: string }
-      - { name: layout, type: string, hidden: true, default: post }
-      - { name: date, label: Date, type: date }
-      - { name: comments, label: Comments, type: boolean, default: true }
-      - { name: description, label: Description, type: string, options: { maxlength: 160 } }
-      - { name: image, label: Image, type: image }
-      - { name: body, label: Body, type: rich-text }
+      - { name: isbn, label: ISBN, type: string }
+      - { name: owned, label: Posiadane?, type: boolean, default: true}
+      - { name: cover, label: Okładka, type: image }
+      - { name: language, label: Język, type: select, options: { 
+        values: [ 
+          Polski, 
+          Angielski, 
+          Hiszpański,
+          ] } }
+      - { name: region, label: Region, type: string }
+      - { name: country, label: Kraj, type: select, options: { 
+        values: [ 
+          Polska, 
+          Niemcy, 
+          Hiszpania,
+          ] } }
+      - { name: continent, label: Kontynent, type: select, options: { 
+        values: [ 
+          Afryka,
+          Antarktyda,
+          Azja,
+          Europa,
+          Ameryka Północna,
+          Australia,
+          Ameryka Południowa,
+          ] } }
+      - { name: translator, label: Tłumaczenie, type: string }
+      - { name: title, label: Tytuł, type: string }
+      - { name: year, label: Rok, type: string }
+      - { name: author, label: Autor, type: string, default: "Antoine de Saint-Exupéry" }
+      
