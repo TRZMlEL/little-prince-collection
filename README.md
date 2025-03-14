@@ -4,7 +4,7 @@ This website showcases Oliwia Kurzeja’s collection of *The Little Prince* edit
 
 <div align="center">
 
-[<kbd> </br> View the Collection </br> </kbd>](https://trzmlel.github.io/little-prince-collection/)
+[<kbd> View the Collection </kbd>](https://trzmlel.github.io/little-prince-collection/)
 
 </div>
 
