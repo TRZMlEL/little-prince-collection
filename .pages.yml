@@ -12,7 +12,22 @@ content:
         values: [ 
           Polski, 
           Angielski, 
-          Hiszpański 
+          Hiszpański,
           ] } }
       - { name: region, label: Region, type: string }
-      - { name: body, label: Body, type: rich-text }
+      - { name: country, label: Kraj, type: select, options: { 
+        values: [ 
+          Polska, 
+          Niemcy, 
+          Hiszpania,
+          ] } }
+      - { name: continent, label: Kontynent, type: select, options: { 
+        values: [ 
+          Africa,
+          Antarctica,
+          Asia,
+          Europe,
+          North America,
+          Oceania,
+          South America,
+          ] } }
