@@ -19,6 +19,19 @@ This website showcases Oliwia Kurzeja’s collection of *The Little Prince* edit
   </a>
 </p>
 
+[![Badge License]][License]   
+[![Badge Likes]][#]
+
+<br>
+<br>
+
+[<kbd> <br> KeyBinding Button <br> </kbd>][KBD]
+
+[![Button Shield]][Shield]
+
+<br>
+<br>
+
 ## Tech Stack
 
 Nuxt, Vue.js, GSAP, TailwindCSS, Three.js, Pages CMS
