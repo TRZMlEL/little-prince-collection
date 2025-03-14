@@ -2,35 +2,11 @@
 
 This website showcases Oliwia Kurzeja’s collection of *The Little Prince* editions in various languages. Whenever she visits a new country, she buys a local edition of *The Little Prince* as a souvenir in that region’s language or dialect. Each book serves as a cherished reminder of the places she has visited.
 
-<p align="center">
-  <a href="https://trzmlel.github.io/little-prince-collection/" target="_blank" style="text-decoration: none;">
-    <button style="
-      background-color: #007acc;
-      color: white;
-      font-size: 16px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    " onmouseover="this.style.backgroundColor='#005a9e'" onmouseout="this.style.backgroundColor='#007acc'">
-      View the Collection
-    </button>
-  </a>
-</p>
+<div align="center">
 
-[![Badge License]][License]   
-[![Badge Likes]][#]
+[<kbd> View the Collection </kbd>](https://trzmlel.github.io/little-prince-collection/)
 
-<br>
-<br>
-
-[<kbd> <br> KeyBinding Button <br> </kbd>][KBD]
-
-[![Button Shield]][Shield]
-
-<br>
-<br>
+</div>
 
 ## Tech Stack
 
