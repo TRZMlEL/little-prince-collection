@@ -8,9 +8,7 @@ content:
       - { name: isbn, label: ISBN, type: string }
       - { name: owned, label: Posiadane?, type: boolean, default: trie }
       - { name: cover, label: Okładka, type: image }
-      - { name: language, label: Język, type: string, options: {} }
-      - { name: comments, label: Comments, type: boolean, default: true }
-      - { name: description, label: Description, type: string, options: { 
+      - { name: language, label: Język, type: string, options: { 
         values: [ 
           Polski, 
           Angielski, 
