@@ -20,9 +20,12 @@ content:
         label: Tag
         type: select
         options:
-          values: 
-            - value: Tech,  
-            - value: News,
-            - value: Sports
+          values:
+          - value: bob
+            label: Bob Smith
+          - value: patricia
+            label: Patricia Wills
+          - value: alice
+            label: Alice Brown
       - { name: image, label: Image, type: image }
       - { name: body, label: Body, type: rich-text }
