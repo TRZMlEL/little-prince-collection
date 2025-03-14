@@ -76,7 +76,7 @@ onMounted(async () => {
   const covers = document.querySelector('.covers');
   const titles = document.querySelector('.titles');
 
-  const response = await fetch('/books.json')
+  const response = await fetch('/little-prince-collection/books.json')
   books.value = await response.json()
 
 // THREE.JS
