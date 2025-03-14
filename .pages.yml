@@ -3,7 +3,7 @@ content:
   - name: books
     label: Books
     type: file
-    path: books.json
+    path: public/books.json
     fields:
       - { name: title, label: Title, type: string }
       - { name: layout, type: string, hidden: true, default: post }
