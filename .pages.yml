@@ -23,11 +23,11 @@ content:
           ] } }
       - { name: continent, label: Kontynent, type: select, options: { 
         values: [ 
-          Africa,
-          Antarctica,
-          Asia,
-          Europe,
-          North America,
-          Oceania,
-          South America,
+          Afryka,
+          Antarktyda,
+          Azja,
+          Europa,
+          Ameryka Północna,
+          Australia,
+          Ameryka Południowa,
           ] } }
