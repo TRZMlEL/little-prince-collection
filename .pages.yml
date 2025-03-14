@@ -21,8 +21,8 @@ content:
         type: select
         options:
           values:
-          - value: bob
-          - value: patricia
-          - value: alice
+            - bob
+            - patricia
+            - alice
       - { name: image, label: Image, type: image }
       - { name: body, label: Body, type: rich-text }
