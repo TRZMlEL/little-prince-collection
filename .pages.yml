@@ -8,14 +8,14 @@ content:
       - { name: isbn, label: ISBN, type: string }
       - { name: owned, label: Posiadane?, type: boolean, default: trie }
       - { name: cover, label: Okładka, type: image }
-      - { name: language, label: Język, type: string, options: { 
+      - { name: language, label: Język, type: select, options: { 
         values: [ 
           Polski, 
           Angielski, 
           Hiszpański 
           ] } }
-      - name: tag
-        label: Tag
+      - name: language
+        label: Język
         type: select
         options:
           values:
