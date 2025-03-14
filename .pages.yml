@@ -14,13 +14,5 @@ content:
           Angielski, 
           Hiszpański 
           ] } }
-      - name: language
-        label: Język
-        type: select
-        options:
-          values:
-            - bob
-            - patricia
-            - alice
-      - { name: image, label: Image, type: image }
+      - { name: region, label: Region, type: string }
       - { name: body, label: Body, type: rich-text }
