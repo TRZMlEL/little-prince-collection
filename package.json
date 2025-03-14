@@ -1,6 +1,6 @@
 {
   "name": "little-prince-collection",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Oliwia Kurzeja's collection of The Little Prince books in different languages",
   "private": true,
   "license": "MPL-2.0",
@@ -41,11 +41,8 @@
     "npm": ">=11.0.0"
   },
   "scripts": {
-    "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.12",
