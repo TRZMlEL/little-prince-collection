@@ -5,10 +5,16 @@ content:
     type: file
     path: public/books.json
     fields:
-      - { name: title, label: Title, type: string }
-      - { name: layout, type: string, hidden: true, default: post }
-      - { name: date, label: Date, type: date }
+      - { name: isbn, label: ISBN, type: string }
+      - { name: owned, label: Posiadane?, type: boolean, default: trie }
+      - { name: cover, label: Okładka, type: image }
+      - { name: language, label: Język, type: string, options: {} }
       - { name: comments, label: Comments, type: boolean, default: true }
-      - { name: description, label: Description, type: string, options: { maxlength: 160 } }
+      - { name: description, label: Description, type: string, options: { 
+        values: [ 
+          Polski, 
+          Angielski, 
+          Hiszpański 
+          ] } }
       - { name: image, label: Image, type: image }
       - { name: body, label: Body, type: rich-text }
