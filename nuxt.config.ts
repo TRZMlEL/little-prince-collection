@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     baseURL: '/little-prince-collection/', // Zmień na nazwę repozytorium
   },
   routeRules: {
-    '/**': { prerender: false } // Generowanie statycznych plików
+    '/**': { prerender: true } // Generowanie statycznych plików
   },
   ssr: false,
   compatibilityDate: "2024-11-01",
@@ -24,5 +24,5 @@ export default defineNuxtConfig({
       crawlLinks: false, // Wyłącza automatyczne znajdowanie stron do prerenderowania
       routes: [] // Nie renderuje żadnych tras
     },
-  }
+  },
 });
