@@ -4,7 +4,7 @@ import glsl from "vite-plugin-glsl";
 
 export default defineNuxtConfig({
   app: {
-    baseURL: '/little-prince/', // Zmień na nazwę repozytorium
+    baseURL: '/little-prince-collection/', // Zmień na nazwę repozytorium
   },
   routeRules: {
     '/**': { prerender: false } // Generowanie statycznych plików
