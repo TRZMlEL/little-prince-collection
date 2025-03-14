@@ -16,5 +16,13 @@ content:
           Angielski, 
           Hiszpański 
           ] } }
+      - name: tag
+        label: Tag
+        type: select
+        options:
+          values: 
+            - value: Tech,  
+            - value: News,
+            - value: Sports
       - { name: image, label: Image, type: image }
       - { name: body, label: Body, type: rich-text }
