@@ -15,7 +15,7 @@
   {
     "isbn": "978-83-800-8533-6",
     "owned": true,
-    "cover": "../assets/covers/978-83-800-8533-6.jpg",
+    "cover": "/assets/covers/978-83-800-8533-6.jpg",
     "language": "Śląski",
     "region": "Śląsk",
     "country": "Polska",
@@ -28,7 +28,7 @@
   {
     "isbn": "978-4-10-212202-0",
     "owned": false,
-    "cover": "../assets/covers/978-4-10-212202-0.jpg",
+    "cover": "/assets/covers/978-4-10-212202-0.jpg",
     "language": "Japoński",
     "country": "Japonia",
     "continent": "Azja",
@@ -40,7 +40,7 @@
   {
     "isbn": "978-3-7306-0229-4",
     "owned": true,
-    "cover": "../assets/covers/978-3-7306-0229-4.jpg",
+    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
     "language": "Niemiecki",
     "country": "Niemcy",
     "continent": "Europa",
@@ -52,7 +52,7 @@
   {
     "isbn": "978-1-85326-158-9",
     "owned": true,
-    "cover": "../assets/covers/978-3-7306-0229-4.jpg",
+    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
     "language": "Angielski",
     "country": "United Kingdom",
     "continent": "Europa",
@@ -64,7 +64,7 @@
   {
     "isbn": "9788481685428",
     "owned": true,
-    "cover": "../assets/covers/9788481685428.jpg",
+    "cover": "/assets/covers/9788481685428.jpg",
     "language": "Asturyjski",
     "region": "Asturia",
     "country": "Hiszpania",
@@ -77,7 +77,7 @@
   {
     "isbn": "978-84-611-6297-7",
     "owned": true,
-    "cover": "../assets/covers/978-84-611-6297-7.jpg",
+    "cover": "/assets/covers/978-84-611-6297-7.jpg",
     "language": "Valencian / Valencià",
     "region": "Wspólnota Walencka",
     "country": "Hiszpania",
@@ -90,7 +90,7 @@
   {
     "isbn": "978-83-800-8533-6",
     "owned": true,
-    "cover": "../assets/covers/978-83-800-8533-6.jpg",
+    "cover": "/assets/covers/978-83-800-8533-6.jpg",
     "language": "Śląski",
     "region": "Śląsk",
     "country": "Polska",
@@ -103,7 +103,7 @@
   {
     "isbn": "978-4-10-212202-0",
     "owned": false,
-    "cover": "../assets/covers/978-4-10-212202-0.jpg",
+    "cover": "/assets/covers/978-4-10-212202-0.jpg",
     "language": "Japoński",
     "country": "Japonia",
     "continent": "Azja",
@@ -116,7 +116,7 @@
   {
     "isbn": "978-3-7306-0229-4",
     "owned": true,
-    "cover": "../assets/covers/978-3-7306-0229-4.jpg",
+    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
     "language": "Niemiecki",
     "country": "Niemcy",
     "continent": "Europa",
@@ -129,7 +129,7 @@
   {
     "isbn": "978-1-85326-158-9",
     "owned": true,
-    "cover": "../assets/covers/978-3-7306-0229-4.jpg",
+    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
     "language": "Angielski",
     "country": "United Kingdom",
     "continent": "Europa",
@@ -142,7 +142,7 @@
   {
     "isbn": "9788481685428",
     "owned": true,
-    "cover": "../assets/covers/9788481685428.jpg",
+    "cover": "/assets/covers/9788481685428.jpg",
     "language": "Asturyjski",
     "region": "Asturia",
     "country": "Hiszpania",
@@ -156,7 +156,7 @@
   {
     "isbn": "978-84-611-6297-7",
     "owned": true,
-    "cover": "../assets/covers/978-84-611-6297-7.jpg",
+    "cover": "/assets/covers/978-84-611-6297-7.jpg",
     "language": "Valencian / Valencià",
     "region": "Wspólnota Walencka",
     "country": "Hiszpania",
@@ -169,7 +169,7 @@
   {
     "isbn": "978-83-800-8533-6",
     "owned": true,
-    "cover": "../assets/covers/978-83-800-8533-6.jpg",
+    "cover": "/assets/covers/978-83-800-8533-6.jpg",
     "language": "Śląski",
     "region": "Śląsk",
     "country": "Polska",
@@ -182,7 +182,7 @@
   {
     "isbn": "978-4-10-212202-0",
     "owned": false,
-    "cover": "../assets/covers/978-4-10-212202-0.jpg",
+    "cover": "/assets/covers/978-4-10-212202-0.jpg",
     "language": "Japoński",
     "country": "Japonia",
     "continent": "Azja",
@@ -195,7 +195,7 @@
   {
     "isbn": "978-3-7306-0229-4",
     "owned": true,
-    "cover": "../assets/covers/978-3-7306-0229-4.jpg",
+    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
     "language": "Niemiecki",
     "country": "Niemcy",
     "continent": "Europa",
@@ -208,7 +208,7 @@
   {
     "isbn": "978-1-85326-158-9",
     "owned": true,
-    "cover": "../assets/covers/978-3-7306-0229-4.jpg",
+    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
     "language": "Angielski",
     "country": "United Kingdom",
     "continent": "Europa",
@@ -221,7 +221,7 @@
   {
     "isbn": "9788481685428",
     "owned": true,
-    "cover": "../assets/covers/9788481685428.jpg",
+    "cover": "/assets/covers/9788481685428.jpg",
     "language": "Asturyjski",
     "region": "Asturia",
     "country": "Hiszpania",
@@ -235,7 +235,7 @@
   {
     "isbn": "978-80-87950-11-1",
     "owned": true,
-    "cover": "../assets/covers/978-80-87950-11-1.jpg",
+    "cover": "/assets/covers/978-80-87950-11-1.jpg",
     "language": "Czeski",
     "country": "Czechy",
     "continent": "Europa",
@@ -247,7 +247,7 @@
   {
     "isbn": "978-0-15-601404-5",
     "owned": true,
-    "cover": "../assets/covers/978-0-15-601404-5.jpg",
+    "cover": "/assets/covers/978-0-15-601404-5.jpg",
     "language": "Łaciński",
     "country": "Stany Zjednoczone Ameryki",
     "continent": "Ameryka Północna",
