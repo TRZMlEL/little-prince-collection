@@ -119,7 +119,13 @@ onMounted(async () => {
   });
 });
 
-const getCover = (book) => book.cover.startsWith(' /') ? book.cover : `/_nuxt${book.cover}`;
+const getCover = (book) => {
+  if (process.env.NODE_ENV === 'production') {
+    return book.cover.startsWith(' /') ? book.cover : `..${book.cover}`;
+  }else {
+    return book.cover.startsWith(' /') ? book.cover : `/_nuxt${book.cover}`;
+  }
+};
 
 // Unikalne wartości krajów i kontynentów
 const uniqueCountries = computed(() => [...new Set(books.value.map(book => book.country))]);
