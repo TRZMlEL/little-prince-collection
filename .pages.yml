@@ -6,24 +6,30 @@ content:
     list: true
     path: public/books.json
     fields:
-      - { name: isbn, label: ISBN, required, type: string }
-      - { name: owned, label: Posiadane?, type: boolean, default: true}
+      - { name: isbn, label: ISBN, required: true, type: string }
+      - { name: owned, label: Posiadane?, type: boolean, default: true }
       - { name: cover, label: Okładka, type: image }
-      - { name: language, label: Język, required, type: string }
+      - { name: language, label: Język, required: true, type: string }
       - { name: region, label: Region, type: string }
-      - { name: country, label: Kraj, required, type: string }
-      - { name: continent, label: Kontynent, type: select, required, options: { 
-        values: [ 
-          Afryka,
-          Antarktyda,
-          Azja,
-          Europa,
-          Ameryka Północna,
-          Australia,
-          Ameryka Południowa,
-          ] } }
+      - { name: country, label: Kraj, required: true, type: string }
+      - { 
+          name: continent, 
+          label: Kontynent, 
+          type: select, 
+          required: true, 
+          options: { 
+            values: [ 
+              Afryka,
+              Antarktyda,
+              Azja,
+              Europa,
+              Ameryka Północna,
+              Australia,
+              Ameryka Południowa
+            ] 
+          } 
+        }
       - { name: translator, label: Tłumaczenie, type: string }
-      - { name: title, label: Tytuł, required, type: string }
+      - { name: title, label: Tytuł, required: true, type: string }
       - { name: year, label: Rok, type: number }
       - { name: author, label: Autor, type: string, default: "Antoine de Saint-Exupéry" }
-      
