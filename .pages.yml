@@ -11,7 +11,7 @@ content:
       - { name: cover, label: Okładka, type: image }
       - { name: language, label: Język, type: string }
       - { name: region, label: Region, type: string }
-      - { name: country, label: Kraj, type: select }
+      - { name: country, label: Kraj, type: string }
       - { name: continent, label: Kontynent, type: select, options: { 
         values: [ 
           Afryka,
