@@ -3,6 +3,7 @@ content:
   - name: books
     label: Books
     type: file
+    list: true
     path: public/books.json
     fields:
       - { name: isbn, label: ISBN, type: string }
