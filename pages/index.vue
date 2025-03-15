@@ -33,7 +33,7 @@
     </header>
 
     <main class="flex gap-8 w-[calc(100vw-64px)] flex-wrap">
-      <div v-for="book in filteredBooks" :key="book.id"
+      <div v-for="book in filteredBooks" :key="book.isbn"
         class="cursor-pointer flex flex-col items-center z-10 w-[calc(18%-8px)]"
         @click="handleBookClick(book)">
         <div class="covers">
@@ -43,11 +43,12 @@
           <h3 class="text-lg font-semibold">{{ book.language }}</h3>
           <p class="text-sm text-gray-500">{{ book.title }}</p>
           <p class="text-xs text-gray-400">
-  <template v-if="book.region">
-    {{ book.region }} -
-  </template>
-  {{ book.country }} - {{ book.continent }}
-</p>        </div>
+            <template v-if="book.region">
+              {{ book.region }} -
+            </template>
+            {{ book.country }} - {{ book.continent }}
+          </p>
+        </div>
       </div>
     </main>
   </div>
@@ -55,7 +56,6 @@
 
 <script setup>
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
-
 import { useRouter } from 'vue-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -79,30 +79,30 @@ onMounted(async () => {
   const response = await fetch('/little-prince-collection/books.json')
   books.value = await response.json()
 
-// THREE.JS
+  // THREE.JS
   const canvas = document.querySelector('#background-canvas');
-    if (canvas) {
-      new Three(canvas);
-    }
+  if (canvas) {
+    new Three(canvas);
+  }
 
   // GSAP
   await nextTick(); // Ensure the elements are in the DOM
 
-  gsap.from('.covers' , {
-  y: 70,            // Startowe przesunięcie w dół
-  opacity: 0,       // Zanikający efekt
-  rotationX: -25,    // Pochylenie do przodu
-  rotationY: 25,
-  duration: 1.6,
-  ease: "power1.inOut",
-  stagger: 0.2,     // Dodanie opóźnienia między elementami
-  scrollTrigger: {
-    trigger: covers,
-    start: "top 80%", // Animacja startuje, gdy 80% elementu wejdzie na ekran
-    toggleActions: "play none none none",
-    once: false       // Animacja uruchamia się tylko raz
-  }
-});
+  gsap.from('.covers', {
+    y: 70,            // Startowe przesunięcie w dół
+    opacity: 0,       // Zanikający efekt
+    rotationX: -25,    // Pochylenie do przodu
+    rotationY: 25,
+    duration: 1.6,
+    ease: "power1.inOut",
+    stagger: 0.2,     // Dodanie opóźnienia między elementami
+    scrollTrigger: {
+      trigger: covers,
+      start: "top 80%", // Animacja startuje, gdy 80% elementu wejdzie na ekran
+      toggleActions: "play none none none",
+      once: false       // Animacja uruchamia się tylko raz
+    }
+  });
 
   gsap.from('.titles', {
     x: -50,            // Startowe przesunięcie w dół
@@ -119,7 +119,7 @@ onMounted(async () => {
   });
 });
 
-const getCover = (book) => new URL(`../assets/covers/${book.isbn}.jpg`, import.meta.url).href;
+const getCover = (book) => book.cover.startsWith(' /') ? book.cover : `/_nuxt${book.cover}`;
 
 // Unikalne wartości krajów i kontynentów
 const uniqueCountries = computed(() => [...new Set(books.value.map(book => book.country))]);
@@ -189,7 +189,7 @@ const handleBookClick = (book) => {
     selectedFilter.value = 'all-editions';
     selectedLanguage.value = book.language;
   } else {
-    router.push(`/book-details/${book.id}`);
+    router.push(`/${book.isbn}`);
   }
 };
 
