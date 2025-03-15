@@ -9,19 +9,9 @@ content:
       - { name: isbn, label: ISBN, type: string }
       - { name: owned, label: Posiadane?, type: boolean, default: true}
       - { name: cover, label: Okładka, type: image }
-      - { name: language, label: Język, type: select, options: { 
-        values: [ 
-          Polski, 
-          Angielski, 
-          Hiszpański,
-          ] } }
+      - { name: language, label: Język, type: string }
       - { name: region, label: Region, type: string }
-      - { name: country, label: Kraj, type: select, options: { 
-        values: [ 
-          Polska, 
-          Niemcy, 
-          Hiszpania,
-          ] } }
+      - { name: country, label: Kraj, type: select }
       - { name: continent, label: Kontynent, type: select, options: { 
         values: [ 
           Afryka,
