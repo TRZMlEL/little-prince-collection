@@ -121,9 +121,10 @@ onMounted(async () => {
 
 const getCover = (book) => {
   if (process.env.NODE_ENV === 'production') {
-    return book.cover.startsWith(' /') ? book.cover : `../little-prince-collection${book.cover}`;
+    
+    return book.cover.startsWith(' /') ? book.cover : `../little-prince-collection${book.cover.replace(/^\/assets\/covers\//, '/_nuxt/')}`; //https://trzmlel.github.io/little-prince-collection/_nuxt/978-0-15-601404-5.BGQkU8rI.jpg
   }else {
-    return book.cover.startsWith(' /') ? book.cover : `/_nuxt${book.cover}`;
+    return book.cover.startsWith(' /') ? book.cover : `/_nuxt${book.cover}`; //http://localhost:3000/little-prince-collection/_nuxt/assets/covers/9788481685428.jpg
   }
 };
 
