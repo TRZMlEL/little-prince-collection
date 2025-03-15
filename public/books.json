@@ -2,7 +2,7 @@
   {
     "isbn": "978-84-611-6297-7",
     "owned": true,
-    "cover": "../assets/covers/978-84-611-6297-7.jpg",
+    "cover": "/assets/covers/978-84-611-6297-7.jpg",
     "language": "Valencian / Valencià",
     "region": "Wspólnota Walencka",
     "country": "Hiszpania",
@@ -33,7 +33,6 @@
     "country": "Japonia",
     "continent": "Azja",
     "translator": "Horiguchi Daigaku",
-    "publisher": "Shincho Bunko",
     "title": "Terres des Hommes - 人間の土地",
     "year": 1981,
     "author": "Antoine de Saint-Exupéry"
@@ -46,7 +45,6 @@
     "country": "Niemcy",
     "continent": "Europa",
     "translator": "Marion Herbert",
-    "publisher": "Anaconda Verlag",
     "title": "Der Kleine Prinz",
     "year": 2015,
     "author": "Antoine de Saint-Exupéry"
@@ -59,7 +57,6 @@
     "country": "United Kingdom",
     "continent": "Europa",
     "translator": "Irene Testot-Ferry",
-    "publisher": "Wordsworth Editions",
     "title": "The Little Prince",
     "year": 1995,
     "author": "Antoine de Saint-Exupéry"
@@ -73,7 +70,6 @@
     "country": "Hiszpania",
     "continent": "Europa",
     "translator": "Xosé Lluis García Arias",
-    "publisher": "Academia de la Lengua Asturiana",
     "title": "El principín",
     "year": 2013,
     "author": "Antoine de Saint-Exupéry"
@@ -241,11 +237,9 @@
     "owned": true,
     "cover": "../assets/covers/978-80-87950-11-1.jpg",
     "language": "Czeski",
-    "region": "",
     "country": "Czechy",
     "continent": "Europa",
     "translator": "Rybka Publishers",
-    "publisher": "Rybka Publishers",
     "title": "Malý princ",
     "year": 2015,
     "author": "Antoine de Saint-Exupéry"
@@ -255,11 +249,9 @@
     "owned": true,
     "cover": "../assets/covers/978-0-15-601404-5.jpg",
     "language": "Łaciński",
-    "region": "",
     "country": "Stany Zjednoczone Ameryki",
     "continent": "Ameryka Północna",
     "translator": "Augusto Haury",
-    "publisher": "Mariner Books-Houghton Mifflin Harcourt-New York",
     "title": "Regulus",
     "year": 2015,
     "author": "Antoine de Saint-Exupéry"
