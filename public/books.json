@@ -108,7 +108,6 @@
     "country": "Japonia",
     "continent": "Azja",
     "translator": "Horiguchi Daigaku",
-    "publisher": "Shincho Bunko",
     "title": "Terres des Hommes - 人間の土地",
     "year": 1981,
     "author": "Antoine de Saint-Exupéry"
@@ -121,7 +120,6 @@
     "country": "Niemcy",
     "continent": "Europa",
     "translator": "Marion Herbert",
-    "publisher": "Anaconda Verlag",
     "title": "Der Kleine Prinz",
     "year": 2015,
     "author": "Antoine de Saint-Exupéry"
@@ -134,7 +132,6 @@
     "country": "United Kingdom",
     "continent": "Europa",
     "translator": "Irene Testot-Ferry",
-    "publisher": "Wordsworth Editions",
     "title": "The Little Prince",
     "year": 1995,
     "author": "Antoine de Saint-Exupéry"
@@ -148,7 +145,6 @@
     "country": "Hiszpania",
     "continent": "Europa",
     "translator": "Xosé Lluis García Arias",
-    "publisher": "Academia de la Lengua Asturiana",
     "title": "El principín",
     "year": 2013,
     "author": "Antoine de Saint-Exupéry"
@@ -187,7 +183,6 @@
     "country": "Japonia",
     "continent": "Azja",
     "translator": "Horiguchi Daigaku",
-    "publisher": "Shincho Bunko",
     "title": "Terres des Hommes - 人間の土地",
     "year": 1981,
     "author": "Antoine de Saint-Exupéry"
@@ -200,7 +195,6 @@
     "country": "Niemcy",
     "continent": "Europa",
     "translator": "Marion Herbert",
-    "publisher": "Anaconda Verlag",
     "title": "Der Kleine Prinz",
     "year": 2015,
     "author": "Antoine de Saint-Exupéry"
@@ -213,7 +207,6 @@
     "country": "United Kingdom",
     "continent": "Europa",
     "translator": "Irene Testot-Ferry",
-    "publisher": "Wordsworth Editions",
     "title": "The Little Prince",
     "year": 1995,
     "author": "Antoine de Saint-Exupéry"
@@ -227,7 +220,6 @@
     "country": "Hiszpania",
     "continent": "Europa",
     "translator": "Xosé Lluis García Arias",
-    "publisher": "Academia de la Lengua Asturiana",
     "title": "El principín",
     "year": 2013,
     "author": "Antoine de Saint-Exupéry"
@@ -254,6 +246,11 @@
     "translator": "Augusto Haury",
     "title": "Regulus",
     "year": 2015,
+    "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "owned": true,
+    "continent": "Afryka",
     "author": "Antoine de Saint-Exupéry"
   }
 ]
