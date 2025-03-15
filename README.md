@@ -5,7 +5,7 @@ This website showcases Oliwia Kurzeja’s collection of *The Little Prince* edit
 <div align="center">
 
 [<kbd> View the Collection </kbd>](https://trzmlel.github.io/little-prince-collection/)
-
+[![View the Collectio](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "View the Collectio")](https://trzmlel.github.io/little-prince-collection/)
 </div>
 
 ## Tech Stack
