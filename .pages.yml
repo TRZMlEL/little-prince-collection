@@ -24,6 +24,6 @@ content:
           ] } }
       - { name: translator, label: Tłumaczenie, type: string }
       - { name: title, label: Tytuł, type: string }
-      - { name: year, label: Rok, type: string }
+      - { name: year, label: Rok, type: number }
       - { name: author, label: Autor, type: string, default: "Antoine de Saint-Exupéry" }
       
