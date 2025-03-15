@@ -121,7 +121,7 @@ onMounted(async () => {
 
 const getCover = (book) => {
   if (process.env.NODE_ENV === 'production') {
-    return book.cover.startsWith(' /') ? book.cover : `..${book.cover}`;
+    return book.cover.startsWith(' /') ? book.cover : `../little-prince-collection${book.cover}`;
   }else {
     return book.cover.startsWith(' /') ? book.cover : `/_nuxt${book.cover}`;
   }
