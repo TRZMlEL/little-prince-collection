@@ -1,9 +1,9 @@
 <template>
-    <div class="p-8 pl-32 pr-32 h-[calc(100vh-16px)] bg-[url(/images/site-background.jpg)]">
+    <div class="p-8 px-4 md:px-32 h-full min-h-screen bg-[url(/images/site-background.jpg)]">
         <button @click="$router.back()" class="mb-4 text-[var(--night-sky) hover:underline">← Powrót</button>
-        <div class="flex gap-16 h-full">
-            <canvas id="book-canvas" class="w-[calc(50%-8px)] h-full"></canvas>
-            <div>
+        <div class="flex gap-16 flex-col md:flex-row h-full">
+            <canvas id="book-canvas" class="w-full md:w-[calc(50%-8px)] md:h-[calc(100vh-128px)]"></canvas>
+            <div class="text-center flex flex-col items-center justify-start">
                 <h1 class="text-6xl font-bold font-little-prince text-[var(--night-sky)]">{{ book?.title }}</h1>
                 <table class="border-collapse border-2">
                     <tr>
@@ -44,7 +44,7 @@
                     </tr>
                 </table>
                 <div id="otherCovers">
-                    <h2 class="text-2xl font-bold">Inne okładki</h2>
+                    <h2 class="text-2xl mt-8 font-bold text-[var(--night-sky)]">Inne okładki</h2>
                     <div class="flex gap-4">
                         <img v-for="cover in book?.otherCovers" :key="cover" :src="cover" alt="Book Cover" class="w-20 h-32 object-cover rounded-md" />
                     </div>

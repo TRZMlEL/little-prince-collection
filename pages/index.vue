@@ -1,8 +1,8 @@
   <template>
-    <div class="relative w-screen h-full pt-4 pb-4 pr-32 pl-32 little-prince bg-[url(/images/site-background.jpg)] bg-inherit bg-center">
+    <div class="relative w-screen h-full pt-4 pb-4 px-4 lg:px-16 xl:px-32 little-prince bg-[url(/images/site-background.jpg)] bg-inherit bg-center">
       <!-- <img src="../assets/covers/978-0-15-601404-5.jpg" alt="Book cover" class="h-full absolute right-0 bottom-0" /> -->
       <!-- <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas> -->
-      <header class="flex gap-4 items-center mb-4">
+      <header class="flex gap-4 items-center mb-4 flex-wrap xl:flex-row">
         <div class="flex items-center gap-4">
           <!-- Skip to main content button for a11y -->
           <a
@@ -14,34 +14,34 @@
 
           <h1 class="text-[var(--night-sky)] font-little-prince text-4xl">Kolekcja Oliwii</h1>
         </div>
-        <div class="flex gap-4 ml-auto">
+        <div class="flex gap-4 flex-wrap ml-auto">
           <!-- Wybór trybu -->
-          <select v-model="selectedFilter" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
+          <select v-model="selectedFilter" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="owned">Moje książki</option>
             <option value="all-languages">Wszystkie języki</option>
             <option value="all-editions">Wszystkie wydania</option>
           </select>
 
           <!-- Wybór języka -->
-          <select v-model="selectedLanguage" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
+          <select v-model="selectedLanguage" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="">Filtruj po języku</option>
             <option v-for="(books, lang) in booksByLanguage" :key="lang" :value="lang">{{ lang }}</option>
           </select>
 
           <!-- Wybór kraju -->
-          <select v-model="selectedCountry" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
+          <select v-model="selectedCountry" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="">Filtruj po kraju</option>
             <option v-for="country in uniqueCountries" :key="country" :value="country">{{ country }}</option>
           </select>
 
           <!-- Wybór kontynentu -->
-          <select v-model="selectedContinent" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
+          <select v-model="selectedContinent" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="">Filtruj po kontynencie</option>
             <option v-for="continent in uniqueContinents" :key="continent" :value="continent">{{ continent }}</option>
           </select>
 
           <!-- Wyszukiwarka -->
-          <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]" />
+          <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]" />
         </div>
       </header>
 
