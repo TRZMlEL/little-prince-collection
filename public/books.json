@@ -124,5 +124,19 @@
     "title": "Printze txikia",
     "year": 2001,
     "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "isbn": "978-84-16310-11-1",
+    "owned": true,
+    "cover": "/assets/covers/978-84-16310-11-1.jpg",
+    "language": "Kataloński",
+    "region": "Katalonia",
+    "country": "Hiszpania",
+    "continent": "Europa",
+    "publisher": "Salamandra",
+    "translator": "Anna i Enric Casassas",
+    "title": "El Petit Princep",
+    "year": 2019,
+    "author": "Antoine de Saint-Exupéry"
   }
 ]
