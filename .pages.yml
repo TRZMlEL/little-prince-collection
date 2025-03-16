@@ -29,6 +29,7 @@ content:
             ] 
           } 
         }
+      - { name: publisher, label: Wydawnictwo, type: string }
       - { name: translator, label: Tłumaczenie, type: string }
       - { name: title, label: Tytuł, required: true, type: string }
       - { name: year, label: Rok, type: number }
