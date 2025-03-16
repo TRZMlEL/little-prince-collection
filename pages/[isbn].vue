@@ -71,7 +71,7 @@ const book = ref(null);
 
 onMounted(async () => {
     // Fetch book
-    const response = await fetch('/books.json');
+    const response = await fetch('/little-prince-collection/books.json');
     const allBooks = await response.json();
     book.value = allBooks.find(b => b.isbn === route.params.isbn);
     console.log(book.value.author, book.value.title, book.value.cover);
