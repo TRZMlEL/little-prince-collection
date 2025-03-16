@@ -139,9 +139,9 @@
 
   const getCover = (book) => {
     console.log(`/little-prince-collection${book.cover}`);
-    return book.cover.startsWith('/')
+    return "/little-prince-collection"+book.cover.startsWith('/')
     ? book.cover
-    : `/little-prince-collection/covers/${book.cover}`;
+    : `/covers/${book.cover}`;
   };
 
   // Unikalne wartości krajów i kontynentów
