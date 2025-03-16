@@ -1,5 +1,5 @@
   <template>
-    <div class="relative w-screen h-full pt-4 pb-4 pr-32 pl-32 little-prince bg-[url(../_nuxt/assets/images/site-background.jpg)] bg-inherit bg-center">
+    <div class="relative w-screen h-full pt-4 pb-4 pr-32 pl-32 little-prince bg-[url(/images/site-background.jpg)] bg-inherit bg-center">
       <!-- <img src="../assets/covers/978-0-15-601404-5.jpg" alt="Book cover" class="h-full absolute right-0 bottom-0" /> -->
       <!-- <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas> -->
       <header class="flex gap-4 items-center mb-4">
@@ -140,7 +140,7 @@
   const getCover = (book) => {
     console.log(book.cover);
     if (process.env.NODE_ENV === 'production') {
-      return `~${book.cover}`
+      return `/_nuxt${book.cover}`
     }else{
       return `/_nuxt${book.cover}`
     }
