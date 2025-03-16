@@ -1,55 +1,62 @@
   <template>
-    <div class="relative w-screen h-full pt-4 pb-4 pr-16 pl-16 little-prince bg-[url(../_nuxt/assets/images/site-background.jpg)] bg-inherit bg-center">
+    <div class="relative w-screen h-full pt-4 pb-4 pr-32 pl-32 little-prince bg-[url(../_nuxt/assets/images/site-background.jpg)] bg-inherit bg-center">
       <!-- <img src="../assets/covers/978-0-15-601404-5.jpg" alt="Book cover" class="h-full absolute right-0 bottom-0" /> -->
       <!-- <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas> -->
-      <header class="flex flex-wrap gap-4 items-center mb-6">
-        <a
-        href="#main-content"
-        class="sr-only focus:not-sr-only bg-[var(--night-sky)] text-white focus:text-[var(--stars)] p-32 px-4 py-2 rounded-md shadow-md transition-opacity duration-200"
-        >
-          Skip to main content
-        </a>
-        <!-- Wybór trybu -->
-        <select v-model="selectedFilter" class="p-2 border rounded-md bg-white shadow">
-          <option value="owned">Moje książki</option>
-          <option value="all-languages">Wszystkie języki</option>
-          <option value="all-editions">Wszystkie wydania</option>
-        </select>
+      <header class="flex gap-4 items-center mb-4">
+        <div class="flex items-center gap-4">
+          <!-- Skip to main content button for a11y -->
+          <a
+          href="#main-content"
+          class="sr-only focus:not-sr-only bg-[var(--night-sky)] text-white focus:text-[var(--stars)] p-32 px-4 py-2 rounded-md shadow-md transition-opacity duration-200 text-center"
+          >
+            Skip to main content
+          </a>
 
-        <!-- Wybór języka -->
-        <select v-model="selectedLanguage" class="p-2 border rounded-md bg-white shadow">
-          <option value="">Filtruj po języku</option>
-          <option v-for="(books, lang) in booksByLanguage" :key="lang" :value="lang">{{ lang }}</option>
-        </select>
+          <h1>Kolekcja Oliwii</h1>
+        </div>
+        <div class="flex gap-4 ml-auto">
+          <!-- Wybór trybu -->
+          <select v-model="selectedFilter" class="p-2 border rounded-md bg-white shadow">
+            <option value="owned">Moje książki</option>
+            <option value="all-languages">Wszystkie języki</option>
+            <option value="all-editions">Wszystkie wydania</option>
+          </select>
 
-        <!-- Wybór kraju -->
-        <select v-model="selectedCountry" class="p-2 border rounded-md bg-white shadow">
-          <option value="">Filtruj po kraju</option>
-          <option v-for="country in uniqueCountries" :key="country" :value="country">{{ country }}</option>
-        </select>
+          <!-- Wybór języka -->
+          <select v-model="selectedLanguage" class="p-2 border rounded-md bg-white shadow">
+            <option value="">Filtruj po języku</option>
+            <option v-for="(books, lang) in booksByLanguage" :key="lang" :value="lang">{{ lang }}</option>
+          </select>
 
-        <!-- Wybór kontynentu -->
-        <select v-model="selectedContinent" class="p-2 border rounded-md bg-white shadow">
-          <option value="">Filtruj po kontynencie</option>
-          <option v-for="continent in uniqueContinents" :key="continent" :value="continent">{{ continent }}</option>
-        </select>
+          <!-- Wybór kraju -->
+          <select v-model="selectedCountry" class="p-2 border rounded-md bg-white shadow">
+            <option value="">Filtruj po kraju</option>
+            <option v-for="country in uniqueCountries" :key="country" :value="country">{{ country }}</option>
+          </select>
 
-        <!-- Wyszukiwarka -->
-        <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="p-2 border rounded-md bg-white shadow" />
+          <!-- Wybór kontynentu -->
+          <select v-model="selectedContinent" class="p-2 border rounded-md bg-white shadow">
+            <option value="">Filtruj po kontynencie</option>
+            <option v-for="continent in uniqueContinents" :key="continent" :value="continent">{{ continent }}</option>
+          </select>
+
+          <!-- Wyszukiwarka -->
+          <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="p-2 border rounded-md bg-white shadow" />
+        </div>
       </header>
 
-      <main class="flex gap-8 w-[calc(100vw-64px)] flex-wrap" id="main-content">
+      <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 w-full flex-wrap" id="main-content">
         <div v-for="book in filteredBooks" :key="book.isbn"
-          class="cursor-pointer flex flex-col items-center z-10 w-[calc(18%-8px)]"
+          class="cursor-pointer flex flex-col items-center w-full z-10"
           @click="handleBookClick(book)"
           @keydown.enter="handleBookClick(book)"
           @keydown.space.prevent="handleBookClick(book)"
           tabindex="0">
           <div class="covers">
-            <img :src="getCover(book)" alt="Book Cover" :class="{ 'saturate-[40%] blur-[1px] hover:filter-none': book.owned === false }" class="transition duration-400 shadow-lg min-h-92 max-h-92 object-cover hover:scale-105" />
+            <img :src="getCover(book)" alt="Book Cover" :class="{ 'saturate-[40%] blur-[1px] hover:filter-none': book.owned === false }" class="transition duration-400 shadow-lg min-h-72 max-h-72 object-cover hover:scale-105" />
           </div>
           <div class="mt-2 text-center titles">
-            <h3 class="text-lg font-semibold">{{ book.language }}</h3>
+            <h2 class="text-lg font-semibold">{{ book.language }}</h2>
             <p class="text-sm text-gray-500">{{ book.title }}</p>
             <p class="text-xs text-gray-400">
               <template v-if="book.region">
