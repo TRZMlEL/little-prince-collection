@@ -140,9 +140,9 @@
   const getCover = (book) => {
     console.log(book.cover);
     if (process.env.NODE_ENV === 'production') {
-      return `/_nuxt${book.cover}`
+      return `${book.cover}`
     }else{
-      return `/_nuxt${book.cover}`
+      return `${book.cover}`
     }
     // if (process.env.NODE_ENV === 'production') {
       
