@@ -141,7 +141,7 @@
     console.log(`/little-prince-collection${book.cover}`);
     return book.cover.startsWith('/')
     ? book.cover
-    : `/covers/${book.cover}`;
+    : `/little-prince-collection/covers/${book.cover}`;
   };
 
   // Unikalne wartości krajów i kontynentów
