@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: 'little-prince';
-    src: url('@/assets/fonts/little-prince/little-prince-font.ttf') format('truetype');
+    src: url('@/assets/fonts/little-prince/GrandHotel-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;

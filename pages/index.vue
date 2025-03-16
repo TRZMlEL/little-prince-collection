@@ -12,36 +12,36 @@
             Skip to main content
           </a>
 
-          <h1>Kolekcja Oliwii</h1>
+          <h1 class="text-[var(--night-sky)] font-little-prince text-4xl">Kolekcja Oliwii</h1>
         </div>
         <div class="flex gap-4 ml-auto">
           <!-- Wybór trybu -->
-          <select v-model="selectedFilter" class="p-2 border rounded-md bg-white shadow">
+          <select v-model="selectedFilter" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow ">
             <option value="owned">Moje książki</option>
             <option value="all-languages">Wszystkie języki</option>
             <option value="all-editions">Wszystkie wydania</option>
           </select>
 
           <!-- Wybór języka -->
-          <select v-model="selectedLanguage" class="p-2 border rounded-md bg-white shadow">
+          <select v-model="selectedLanguage" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow">
             <option value="">Filtruj po języku</option>
             <option v-for="(books, lang) in booksByLanguage" :key="lang" :value="lang">{{ lang }}</option>
           </select>
 
           <!-- Wybór kraju -->
-          <select v-model="selectedCountry" class="p-2 border rounded-md bg-white shadow">
+          <select v-model="selectedCountry" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow">
             <option value="">Filtruj po kraju</option>
             <option v-for="country in uniqueCountries" :key="country" :value="country">{{ country }}</option>
           </select>
 
           <!-- Wybór kontynentu -->
-          <select v-model="selectedContinent" class="p-2 border rounded-md bg-white shadow">
+          <select v-model="selectedContinent" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow">
             <option value="">Filtruj po kontynencie</option>
             <option v-for="continent in uniqueContinents" :key="continent" :value="continent">{{ continent }}</option>
           </select>
 
           <!-- Wyszukiwarka -->
-          <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="p-2 border rounded-md bg-white shadow" />
+          <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow" />
         </div>
       </header>
 
