@@ -85,5 +85,16 @@
     "title": "Regulus",
     "year": 2015,
     "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "isbn": "978-83-280-4983-3",
+    "owned": true,
+    "cover": "/assets/covers/978-83-280-4983-3.jpg",
+    "language": "Polski",
+    "country": "Polska",
+    "continent": "Europa",
+    "title": "Mały Książe",
+    "year": 2020,
+    "author": "Antoine de Saint-Exupéry"
   }
 ]
