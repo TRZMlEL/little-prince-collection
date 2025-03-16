@@ -40,7 +40,9 @@
     --font-fa-regular: "fa-regular-400";
     --font-fa-brands: "fa-brands-400";
     --night-sky: #1B1F3B;
+    --dark-night-sky: #0E122B;
     --stars: #F4C542;
+    --shadow-night-sky: 0px 1px 4px #000;
 }
 
 * {

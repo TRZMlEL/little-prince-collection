@@ -7,7 +7,7 @@
           <!-- Skip to main content button for a11y -->
           <a
           href="#main-content"
-          class="sr-only focus:not-sr-only bg-[var(--night-sky)] text-white focus:text-[var(--stars)] p-32 px-4 py-2 rounded-md shadow-md transition-opacity duration-200 text-center"
+          class="text-xs sr-only focus:not-sr-only bg-[var(--night-sky)] text-white focus:text-[var(--stars)] p-32 px-4 py-2 shadow-[var(--shadow-night-sky)] transition-opacity duration-200 text-center"
           >
             Skip to main content
           </a>
@@ -16,32 +16,32 @@
         </div>
         <div class="flex gap-4 ml-auto">
           <!-- Wybór trybu -->
-          <select v-model="selectedFilter" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow ">
+          <select v-model="selectedFilter" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="owned">Moje książki</option>
             <option value="all-languages">Wszystkie języki</option>
             <option value="all-editions">Wszystkie wydania</option>
           </select>
 
           <!-- Wybór języka -->
-          <select v-model="selectedLanguage" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow">
+          <select v-model="selectedLanguage" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="">Filtruj po języku</option>
             <option v-for="(books, lang) in booksByLanguage" :key="lang" :value="lang">{{ lang }}</option>
           </select>
 
           <!-- Wybór kraju -->
-          <select v-model="selectedCountry" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow">
+          <select v-model="selectedCountry" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="">Filtruj po kraju</option>
             <option v-for="country in uniqueCountries" :key="country" :value="country">{{ country }}</option>
           </select>
 
           <!-- Wybór kontynentu -->
-          <select v-model="selectedContinent" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow">
+          <select v-model="selectedContinent" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="">Filtruj po kontynencie</option>
             <option v-for="continent in uniqueContinents" :key="continent" :value="continent">{{ continent }}</option>
           </select>
 
           <!-- Wyszukiwarka -->
-          <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow" />
+          <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]" />
         </div>
       </header>
 

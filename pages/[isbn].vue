@@ -4,27 +4,43 @@
         <div class="flex gap-16 h-full">
             <canvas id="book-canvas" class="w-[calc(50%-8px)] h-full"></canvas>
             <div>
-                <h1 class="text-4xl font-bold">{{ book?.title }}</h1>
-                <table class="border-collapse border-2 border-blue-500">
+                <h1 class="text-6xl font-bold font-little-prince text-[var(--night-sky)]">{{ book?.title }}</h1>
+                <table class="border-collapse border-2">
                     <tr>
-                        <td class="border-2 border-blue-500">ISBN:</td>
-                        <td class="border-2 border-blue-500">{{ book?.isbn }}</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">ISBN:</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">{{ book?.isbn }}</td>
                     </tr >
                     <tr>
-                        <td class="border-2 border-blue-500">Język:</td>
-                        <td class="border-2 border-blue-500">{{ book?.language }}</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">Tytuł:</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">{{ book?.title }}</td>
+                    </tr >
+                    <tr>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">Język:</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">{{ book?.language }}</td>
                     </tr>
                     <tr>
-                        <td class="border-2 border-blue-500">Wydawnictwo:</td>
-                        <td class="border-2 border-blue-500">{{ book?.publisher }}</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">Region:</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">{{ book?.region }}</td>
                     </tr>
                     <tr>
-                        <td class="border-2 border-blue-500">Rok wydania:</td>
-                        <td class="border-2 border-blue-500">{{ book?.year }}</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">Kraj:</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">{{ book?.country }}</td>
                     </tr>
                     <tr>
-                        <td class="border-2 border-blue-500">Autor:</td>
-                        <td class="border-2 border-blue-500">{{ book?.author }}</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">Wydawnictwo:</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">{{ book?.publisher }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">Tłumaczenie:</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">{{ book?.translator }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">Rok wydania:</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">{{ book?.year }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">Autor:</td>
+                        <td class="border-4 border-[var(--dark-night-sky)] bg-[var(--night-sky)] text-white px-4 py-2">{{ book?.author }}</td>
                     </tr>
                 </table>
                 <div id="otherCovers">
