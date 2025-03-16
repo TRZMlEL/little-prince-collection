@@ -139,12 +139,9 @@
 
   const getCover = (book) => {
     console.log(`/little-prince-collection${book.cover}`);
-      return `/little-prince-collection${book.cover}`
-    // if (process.env.NODE_ENV === 'production') {
-      
-    //   // return book.cover.startsWith(' /') ? book.cover : `../little-prince-collection${}`; //https://trzmlel.github.io/little-prince-collection/_nuxt/978-0-15-601404-5.BGQkU8rI.jpg
-    // }else {
-    // }
+    return book.cover.startsWith('/')
+    ? book.cover
+    : `/covers/${book.cover}`;
   };
 
   // Unikalne wartości krajów i kontynentów
