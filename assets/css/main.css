@@ -53,6 +53,14 @@ html body {
     overflow-x: hidden;
 }
 
+*:active{
+    outline: none;
+}
+
+*:focus {
+    outline: none;
+}
+
 *:focus-visible {
     outline: 0.2rem solid var(--stars);
     outline-offset: 0.2rem;

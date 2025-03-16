@@ -38,6 +38,7 @@ export default class Three {
 
   setLights() {
     this.ambientLight = new T.AmbientLight(0xffffff, 1);
+    this.ambientLight.intensity = 2.5;
     this.scene.add(this.ambientLight);
   }
 
@@ -48,7 +49,7 @@ export default class Three {
       new T.MeshBasicMaterial({ color: 0xffffff }), // Prawy bok
       new T.MeshBasicMaterial({ color: 0xffffff }), // Góra
       new T.MeshBasicMaterial({ color: 0xffffff }), // Dół
-      new T.MeshBasicMaterial({ map: loader.load(this.book) }), // Przód
+      new T.MeshPhongMaterial({ map: loader.load(this.book) }), // Przód
       new T.MeshBasicMaterial({ color: 0xffffff }) // Tył
     ];
 
@@ -58,12 +59,24 @@ export default class Three {
   }
 
   render() {
+    let angle = 0;
+    let direction = 1; // 1 oznacza obrót w prawo, -1 oznacza obrót w lewo
+    const maxAngle = Math.PI / 4; // Maksymalny kąt (np. 30 stopni)
+  
     const animate = () => {
       requestAnimationFrame(animate);
-      this.card.rotation.y += 0.01; // Obrót w osi Y
+  
+      angle += 0.003 * direction;
+  
+      if (angle >= maxAngle || angle <= -maxAngle) {
+        direction *= -1; // Zmiana kierunku, gdy osiągnie maksymalny kąt
+      }
+  
+      this.card.rotation.y = angle;
       this.controls.update();
       this.renderer.render(this.scene, this.camera);
     };
+  
     animate();
   }
 
