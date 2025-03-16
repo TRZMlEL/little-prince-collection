@@ -111,5 +111,17 @@
     "title": "Küçük Prens",
     "year": 2015,
     "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "isbn": "978-84-8331-749-5",
+    "owned": true,
+    "language": "Baskijski",
+    "country": "Hiszpania",
+    "continent": "Europa",
+    "publisher": "Salamandra",
+    "translator": "Patxi Zubizarretta",
+    "title": "Printze txikia",
+    "year": 2001,
+    "author": "Antoine de Saint-Exupéry"
   }
 ]
