@@ -53,7 +53,7 @@
           @keydown.space.prevent="handleBookClick(book)"
           tabindex="0">
           <div class="covers">
-            <img :src="getCover(book)" alt="Book Cover" :class="{ 'saturate-[40%] blur-[1px] hover:filter-none': book.owned === false }" class="transition duration-400 shadow-lg min-h-72 max-h-72 object-cover hover:scale-105" />
+            <img :src="`/little-prince-collection${getCover(book)}`" alt="Book Cover" :class="{ 'saturate-[40%] blur-[1px] hover:filter-none': book.owned === false }" class="transition duration-400 shadow-lg min-h-72 max-h-72 object-cover hover:scale-105" />
           </div>
           <div class="mt-2 text-center titles">
             <h2 class="text-lg font-semibold">{{ book.language }}</h2>
