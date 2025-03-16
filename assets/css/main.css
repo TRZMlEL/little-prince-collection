@@ -39,4 +39,22 @@
     --font-fa-solid: "fa-solid-900";
     --font-fa-regular: "fa-regular-400";
     --font-fa-brands: "fa-brands-400";
+    --night-sky: #1B1F3B;
+    --stars: #F4C542;
+}
+
+* {
+    box-sizing: inherit; /* Dziedziczy ustawienie box-sizing z html, body */
+  }
+
+html body {
+    box-sizing: border-box;
+    background-image: url('/_nuxt/assets/images/site-background.jpg');
+    overflow-x: hidden;
+}
+
+*:focus-visible {
+    outline: 0.2rem solid var(--stars);
+    outline-offset: 0.2rem;
+    transition: all 0.2s ease-in-out;
 }

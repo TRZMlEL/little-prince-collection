@@ -1,8 +1,14 @@
   <template>
-    <div class="relative w-screen h-screen pt-4 pb-4 pr-16 pl-16 little-prince">
-      <img src="../assets/covers/978-0-15-601404-5.jpg" alt="Book cover" class="h-full absolute right-0 bottom-0" />
+    <div class="relative w-screen h-full pt-4 pb-4 pr-16 pl-16 little-prince bg-[url(../_nuxt/assets/images/site-background.jpg)] bg-inherit bg-center">
+      <!-- <img src="../assets/covers/978-0-15-601404-5.jpg" alt="Book cover" class="h-full absolute right-0 bottom-0" /> -->
       <!-- <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas> -->
       <header class="flex flex-wrap gap-4 items-center mb-6">
+        <a
+        href="#main-content"
+        class="sr-only focus:not-sr-only bg-[var(--night-sky)] text-white focus:text-[var(--stars)] p-32 px-4 py-2 rounded-md shadow-md transition-opacity duration-200"
+        >
+          Skip to main content
+        </a>
         <!-- Wybór trybu -->
         <select v-model="selectedFilter" class="p-2 border rounded-md bg-white shadow">
           <option value="owned">Moje książki</option>
@@ -32,10 +38,13 @@
         <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="p-2 border rounded-md bg-white shadow" />
       </header>
 
-      <main class="flex gap-8 w-[calc(100vw-64px)] flex-wrap">
+      <main class="flex gap-8 w-[calc(100vw-64px)] flex-wrap" id="main-content">
         <div v-for="book in filteredBooks" :key="book.isbn"
           class="cursor-pointer flex flex-col items-center z-10 w-[calc(18%-8px)]"
-          @click="handleBookClick(book)">
+          @click="handleBookClick(book)"
+          @keydown.enter="handleBookClick(book)"
+          @keydown.space.prevent="handleBookClick(book)"
+          tabindex="0">
           <div class="covers">
             <img :src="getCover(book)" alt="Book Cover" :class="{ 'saturate-[40%] blur-[1px] hover:filter-none': book.owned === false }" class="transition duration-400 shadow-lg min-h-92 max-h-92 object-cover hover:scale-105" />
           </div>

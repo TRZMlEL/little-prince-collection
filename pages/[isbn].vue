@@ -1,7 +1,41 @@
 <template>
-    <div class="p-6 max-w-2xl mx-auto bg-white shadow-lg rounded-lg">
+    <div class="p-8 pl-32 pr-32 h-[calc(100vh-16px)]">
         <button @click="$router.back()" class="mb-4 text-blue-500 hover:underline">← Powrót</button>
-        <canvas id="book-canvas" class="w-1/2 h-96"></canvas>
+        <div class="flex gap-16 h-full">
+            <canvas id="book-canvas" class="w-[calc(50%-8px)] h-full"></canvas>
+            <div>
+                <h1 class="text-4xl font-bold">{{ book?.title }}</h1>
+                <table class="border-collapse border-2 border-blue-500">
+                    <tr>
+                        <td class="border-2 border-blue-500">ISBN:</td>
+                        <td class="border-2 border-blue-500">{{ book?.isbn }}</td>
+                    </tr >
+                    <tr>
+                        <td class="border-2 border-blue-500">Język:</td>
+                        <td class="border-2 border-blue-500">{{ book?.language }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border-2 border-blue-500">Wydawnictwo:</td>
+                        <td class="border-2 border-blue-500">{{ book?.publisher }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border-2 border-blue-500">Rok wydania:</td>
+                        <td class="border-2 border-blue-500">{{ book?.year }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border-2 border-blue-500">Autor:</td>
+                        <td class="border-2 border-blue-500">{{ book?.author }}</td>
+                    </tr>
+                </table>
+                <div id="otherCovers">
+                    <h2 class="text-2xl font-bold">Inne okładki</h2>
+                    <div class="flex gap-4">
+                        <img v-for="cover in book?.otherCovers" :key="cover" :src="cover" alt="Book Cover" class="w-20 h-32 object-cover rounded-md" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- <div class="flex flex-col items-center text-center">
         <img :src="book?.cover" alt="Book Cover" class="w-40 h-60 object-cover rounded-md mb-4" />
         <h2 class="text-2xl font-bold">{{ book?.title }}</h2>
@@ -24,6 +58,7 @@ onMounted(async () => {
     const response = await fetch('/books.json');
     const allBooks = await response.json();
     book.value = allBooks.find(b => b.isbn === route.params.isbn);
+    console.log(book.value.author, book.value.title, book.value.cover);
 
     if (!book.value) {
         console.error('Book not found');
@@ -37,9 +72,3 @@ onMounted(async () => {
     }
 });
 </script>
-
-<style scoped>
-#book-canvas {
-  background: #222;
-}
-</style>
