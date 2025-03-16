@@ -1,18 +1,5 @@
 [
   {
-    "isbn": "978-84-611-6297-7",
-    "owned": true,
-    "cover": "/assets/covers/978-84-611-6297-7.jpg",
-    "language": "Valencian / Valencià",
-    "region": "Wspólnota Walencka",
-    "country": "Hiszpania",
-    "continent": "Europa",
-    "translator": "Jaume Arabi",
-    "title": "El princep xiquet",
-    "year": 2007,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
     "isbn": "978-83-800-8533-6",
     "owned": true,
     "cover": "/assets/covers/978-83-800-8533-6.jpg",
@@ -50,31 +37,6 @@
     "author": "Antoine de Saint-Exupéry"
   },
   {
-    "isbn": "978-1-85326-158-9",
-    "owned": true,
-    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
-    "language": "Angielski",
-    "country": "United Kingdom",
-    "continent": "Europa",
-    "translator": "Irene Testot-Ferry",
-    "title": "The Little Prince",
-    "year": 1995,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
-    "isbn": "9788481685428",
-    "owned": true,
-    "cover": "/assets/covers/9788481685428.jpg",
-    "language": "Asturyjski",
-    "region": "Asturia",
-    "country": "Hiszpania",
-    "continent": "Europa",
-    "translator": "Xosé Lluis García Arias",
-    "title": "El principín",
-    "year": 2013,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
     "isbn": "978-84-611-6297-7",
     "owned": true,
     "cover": "/assets/covers/978-84-611-6297-7.jpg",
@@ -88,55 +50,6 @@
     "author": "Antoine de Saint-Exupéry"
   },
   {
-    "isbn": "978-83-800-8533-6",
-    "owned": true,
-    "cover": "/assets/covers/978-83-800-8533-6.jpg",
-    "language": "Śląski",
-    "region": "Śląsk",
-    "country": "Polska",
-    "continent": "Europa",
-    "translator": "Kulik Grzegorz",
-    "title": "Mały Princ",
-    "year": 2018,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
-    "isbn": "978-4-10-212202-0",
-    "owned": false,
-    "cover": "/assets/covers/978-4-10-212202-0.jpg",
-    "language": "Japoński",
-    "country": "Japonia",
-    "continent": "Azja",
-    "translator": "Horiguchi Daigaku",
-    "title": "Terres des Hommes - 人間の土地",
-    "year": 1981,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
-    "isbn": "978-3-7306-0229-4",
-    "owned": true,
-    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
-    "language": "Niemiecki",
-    "country": "Niemcy",
-    "continent": "Europa",
-    "translator": "Marion Herbert",
-    "title": "Der Kleine Prinz",
-    "year": 2015,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
-    "isbn": "978-1-85326-158-9",
-    "owned": true,
-    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
-    "language": "Angielski",
-    "country": "United Kingdom",
-    "continent": "Europa",
-    "translator": "Irene Testot-Ferry",
-    "title": "The Little Prince",
-    "year": 1995,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
     "isbn": "9788481685428",
     "owned": true,
     "cover": "/assets/covers/9788481685428.jpg",
@@ -150,56 +63,6 @@
     "author": "Antoine de Saint-Exupéry"
   },
   {
-    "isbn": "978-84-611-6297-7",
-    "owned": true,
-    "cover": "/assets/covers/978-84-611-6297-7.jpg",
-    "language": "Valencian / Valencià",
-    "region": "Wspólnota Walencka",
-    "country": "Hiszpania",
-    "continent": "Europa",
-    "translator": "Jaume Arabi",
-    "title": "El princep xiquet",
-    "year": 2007,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
-    "isbn": "978-83-800-8533-6",
-    "owned": true,
-    "cover": "/assets/covers/978-83-800-8533-6.jpg",
-    "language": "Śląski",
-    "region": "Śląsk",
-    "country": "Polska",
-    "continent": "Europa",
-    "translator": "Kulik Grzegorz",
-    "title": "Mały Princ",
-    "year": 2018,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
-    "isbn": "978-4-10-212202-0",
-    "owned": false,
-    "cover": "/assets/covers/978-4-10-212202-0.jpg",
-    "language": "Japoński",
-    "country": "Japonia",
-    "continent": "Azja",
-    "translator": "Horiguchi Daigaku",
-    "title": "Terres des Hommes - 人間の土地",
-    "year": 1981,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
-    "isbn": "978-3-7306-0229-4",
-    "owned": true,
-    "cover": "/assets/covers/978-3-7306-0229-4.jpg",
-    "language": "Niemiecki",
-    "country": "Niemcy",
-    "continent": "Europa",
-    "translator": "Marion Herbert",
-    "title": "Der Kleine Prinz",
-    "year": 2015,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
     "isbn": "978-1-85326-158-9",
     "owned": true,
     "cover": "/assets/covers/978-3-7306-0229-4.jpg",
@@ -209,19 +72,6 @@
     "translator": "Irene Testot-Ferry",
     "title": "The Little Prince",
     "year": 1995,
-    "author": "Antoine de Saint-Exupéry"
-  },
-  {
-    "isbn": "9788481685428",
-    "owned": true,
-    "cover": "/assets/covers/9788481685428.jpg",
-    "language": "Asturyjski",
-    "region": "Asturia",
-    "country": "Hiszpania",
-    "continent": "Europa",
-    "translator": "Xosé Lluis García Arias",
-    "title": "El principín",
-    "year": 2013,
     "author": "Antoine de Saint-Exupéry"
   },
   {
