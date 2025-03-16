@@ -74,23 +74,22 @@ onMounted(async () => {
     const response = await fetch('/little-prince-collection/books.json');
     const allBooks = await response.json();
     book.value = allBooks.find(b => b.isbn === route.params.isbn);
-    console.log(book.value.author, book.value.title, book.value.cover);
 
     if (!book.value) {
         console.error('Book not found');
         return;
     }
-    
+
     const getCover = (book) => {
     return "/little-prince-collection"+book.cover.startsWith('/')
     ? book.cover
     : `/covers/${book.cover}`;
   };
-    
+  console.log("/little-prince-collection"+getCover(book.value));
     // Three.js
     const canvas = document.querySelector('#book-canvas');
     if (canvas) {
-        new Three(canvas, getCover(book.value));
+        new Three(canvas, "/little-prince-collection"+getCover(book.value));
     }
 });
 </script>
