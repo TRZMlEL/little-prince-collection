@@ -165,5 +165,19 @@
     "title": "El Principito",
     "year": 2021,
     "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "isbn": "978-1-9160470-0-6",
+    "owned": true,
+    "cover": "/assets/covers/978-1-9160470-0-6.jpg",
+    "language": "Irlandzki",
+    "region": "Donegal",
+    "country": "Irlandia",
+    "continent": "Europa",
+    "publisher": "Éabhólid",
+    "translator": "Eoghan Mac Giolla Bhríde",
+    "title": "An Prionsa Beag",
+    "year": 2019,
+    "author": "Antoine de Saint-Exupéry"
   }
 ]
