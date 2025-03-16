@@ -1,6 +1,6 @@
 <template>
-    <div class="p-8 pl-32 pr-32 h-[calc(100vh-16px)]">
-        <button @click="$router.back()" class="mb-4 text-blue-500 hover:underline">← Powrót</button>
+    <div class="p-8 pl-32 pr-32 h-[calc(100vh-16px)] bg-[url(/images/site-background.jpg)]">
+        <button @click="$router.back()" class="mb-4 text-[var(--night-sky) hover:underline">← Powrót</button>
         <div class="flex gap-16 h-full">
             <canvas id="book-canvas" class="w-[calc(50%-8px)] h-full"></canvas>
             <div>
@@ -80,7 +80,13 @@ onMounted(async () => {
         console.error('Book not found');
         return;
     }
-    const getCover = (book) => book.cover.startsWith(' /') ? book.cover : `/_nuxt${book.cover}`;
+    
+    const getCover = (book) => {
+    return "/little-prince-collection"+book.cover.startsWith('/')
+    ? book.cover
+    : `/covers/${book.cover}`;
+  };
+    
     // Three.js
     const canvas = document.querySelector('#book-canvas');
     if (canvas) {

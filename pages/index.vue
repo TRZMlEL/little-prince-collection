@@ -138,7 +138,6 @@
   console.log(books.value);
 
   const getCover = (book) => {
-    console.log(`/little-prince-collection${book.cover}`);
     return "/little-prince-collection"+book.cover.startsWith('/')
     ? book.cover
     : `/covers/${book.cover}`;
