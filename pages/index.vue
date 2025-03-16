@@ -135,8 +135,11 @@
     });
   });
 
+  console.log(books.value);
+
   const getCover = (book) => {
-    return book.cover.startsWith(' /') ? book.cover : `/_nuxt/assets/covers${book.cover.replace(/^\/assets\/covers\//, '/')}`; //http://localhost:3000/little-prince-collection/_nuxt/assets/covers/9788481685428.jpg
+    console.log(book.cover);
+    return `/_nuxt${book.cover}`
 
     // if (process.env.NODE_ENV === 'production') {
       
