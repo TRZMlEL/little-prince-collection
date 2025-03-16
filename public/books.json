@@ -151,5 +151,19 @@
     "title": "Le Petit Prince",
     "year": 2022,
     "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "isbn": "978-980-7716-01-7",
+    "owned": true,
+    "cover": "/assets/covers/978-980-7716-01-7.jpg",
+    "language": "Hiszpańśki",
+    "region": "Caracas",
+    "country": "Wenezuela",
+    "continent": "Ameryka Południowa",
+    "publisher": "Plutón Ediciones",
+    "translator": "Pedro Villalobos",
+    "title": "El Principito",
+    "year": 2021,
+    "author": "Antoine de Saint-Exupéry"
   }
 ]
