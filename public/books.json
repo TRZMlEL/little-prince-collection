@@ -138,5 +138,17 @@
     "title": "El Petit Princep",
     "year": 2019,
     "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "isbn": "978-2-07-515554-0",
+    "owned": true,
+    "cover": "/assets/covers/978-2-07-515554-0.gif",
+    "language": "Francuski",
+    "region": "Paryż",
+    "country": "Francja",
+    "continent": "Europa",
+    "title": "Le Petit Prince",
+    "year": 0,
+    "author": "Antoine de Saint-Exupéry"
   }
 ]
