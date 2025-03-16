@@ -97,5 +97,19 @@
     "title": "Mały Książe",
     "year": 2020,
     "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "isbn": "978-975-07-2443-5",
+    "owned": true,
+    "cover": "/assets/covers/978-975-07-2443-5.jpg",
+    "language": "Turecki",
+    "region": "Istanbul",
+    "country": "Turcja",
+    "continent": "Azja",
+    "publisher": "Can Sanat Yayınları",
+    "translator": "Cemal Süreya & Tomris Uyar",
+    "title": "Küçük Prens",
+    "year": 2015,
+    "author": "Antoine de Saint-Exupéry"
   }
 ]
