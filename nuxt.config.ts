@@ -19,6 +19,11 @@ export default defineNuxtConfig({
       glsl(),
     ],
   },
+  modules: [
+    'nuxt-rfg-icon',
+    '@nuxtjs/manifest',
+  ]
+
   // nitro: {
   //   prerender: {
   //     crawlLinks: false, // Wyłącza automatyczne znajdowanie stron do prerenderowania
