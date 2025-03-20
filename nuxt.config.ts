@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-rfg-icon',
     '@nuxtjs/manifest',
-  ]
+  ],
 
   // nitro: {
   //   prerender: {
