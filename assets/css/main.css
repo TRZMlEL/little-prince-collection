@@ -51,7 +51,6 @@
 
 html body {
     box-sizing: border-box;
-    background-image: url('/_nuxt/assets/images/site-background.jpg');
     overflow-x: hidden;
 }
 

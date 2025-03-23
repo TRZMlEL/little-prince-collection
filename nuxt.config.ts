@@ -7,11 +7,11 @@ export default defineNuxtConfig({
     baseURL: '/little-prince-collection/', // Zmień na nazwę repozytorium
     head: {
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'icon', type: 'image/svg+xml', href: '/icon0.svg' },
-        { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/icon1.png' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-icon.png' },
-        { rel: 'manifest', href: '/site.webmanifest' }
+        { rel: 'icon', type: 'image/x-icon', href: '/little-prince-collection/favicon.ico' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/little-prince-collection/icon0.svg' },
+        { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/little-prince-collection/icon1.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/little-prince-collection/apple-icon.png' },
+        { rel: 'manifest', href: '/little-prince-collection/site.webmanifest' }
       ],
     },
   },
