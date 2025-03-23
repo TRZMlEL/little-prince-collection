@@ -13,6 +13,9 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/little-prince-collection/apple-icon.png' },
         { rel: 'manifest', href: '/little-prince-collection/site.webmanifest' }
       ],
+      meta: [
+        { 'http-equiv': 'Permissions-Policy', content: 'interest-cohort=()' }
+      ],
     },
   },
   routeRules: {
