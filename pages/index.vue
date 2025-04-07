@@ -15,32 +15,32 @@
           <h1 class="text-[var(--night-sky)] font-little-prince text-4xl">Kolekcja Oliwii</h1>
         </div>
         <div class="flex gap-4 flex-wrap ml-auto">
-          <!-- Wybór trybu -->
+          <!-- filter mode -->
           <select v-model="selectedFilter" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="owned">Moje książki</option>
             <option value="all-languages">Wszystkie języki</option>
             <option value="all-editions">Wszystkie wydania</option>
           </select>
 
-          <!-- Wybór języka -->
+          <!-- filter language -->
           <select v-model="selectedLanguage" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="">Filtruj po języku</option>
             <option v-for="(books, lang) in booksByLanguage" :key="lang" :value="lang">{{ lang }}</option>
           </select>
 
-          <!-- Wybór kraju -->
+          <!-- filter country -->
           <select v-model="selectedCountry" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="">Filtruj po kraju</option>
             <option v-for="country in uniqueCountries" :key="country" :value="country">{{ country }}</option>
           </select>
 
-          <!-- Wybór kontynentu -->
+          <!-- filter continent -->
           <select v-model="selectedContinent" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]">
             <option value="">Filtruj po kontynencie</option>
             <option v-for="continent in uniqueContinents" :key="continent" :value="continent">{{ continent }}</option>
           </select>
 
-          <!-- Wyszukiwarka -->
+          <!-- search bar -->
           <input v-model="searchQuery" type="text" placeholder="Szukaj po ISBN lub tytule" class="w-full sm:w-auto p-2 bg-[var(--night-sky)] text-white hover:text-[var(--stars)] shadow-[var(--shadow-night-sky)]" />
         </div>
       </header>
