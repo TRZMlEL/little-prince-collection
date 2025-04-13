@@ -45,23 +45,23 @@ export default class Three {
   setGeometry() {
     const loader = new T.TextureLoader();
     const materials = [
-      new T.MeshBasicMaterial({ color: 0xffffff }), // Lewy bok
-      new T.MeshBasicMaterial({ color: 0xffffff }), // Prawy bok
-      new T.MeshBasicMaterial({ color: 0xffffff }), // Góra
-      new T.MeshBasicMaterial({ color: 0xffffff }), // Dół
-      new T.MeshPhongMaterial({ map: loader.load(this.book) }), // Przód
-      new T.MeshBasicMaterial({ color: 0xffffff }) // Tył
+      new T.MeshBasicMaterial({ color: 0xffffff }), // left side
+      new T.MeshBasicMaterial({ color: 0xffffff }), // right side
+      new T.MeshBasicMaterial({ color: 0xffffff }), // top side
+      new T.MeshBasicMaterial({ color: 0xffffff }), // bottom side
+      new T.MeshPhongMaterial({ map: loader.load(this.book) }), // front side
+      new T.MeshBasicMaterial({ color: 0xffffff }) // back side
     ];
 
-    const geometry = new T.BoxGeometry(3.5, 5, 0.2); // Wysokość, szerokość, grubość
+    const geometry = new T.BoxGeometry(3.5, 5, 0.2); // height, width, depth
     this.card = new T.Mesh(geometry, materials);
     this.scene.add(this.card);
   }
 
   render() {
     let angle = 0;
-    let direction = 1; // 1 oznacza obrót w prawo, -1 oznacza obrót w lewo
-    const maxAngle = Math.PI / 4; // Maksymalny kąt (np. 30 stopni)
+    let direction = 1; // 1 - rotate right, -1 - rotate left
+    const maxAngle = Math.PI / 4; // maximum angle in radians
   
     const animate = () => {
       requestAnimationFrame(animate);
@@ -69,7 +69,7 @@ export default class Three {
       angle += 0.003 * direction;
   
       if (angle >= maxAngle || angle <= -maxAngle) {
-        direction *= -1; // Zmiana kierunku, gdy osiągnie maksymalny kąt
+        direction *= -1; // change direction if max angle is reached
       }
   
       this.card.rotation.y = angle;

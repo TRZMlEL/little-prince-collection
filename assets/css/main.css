@@ -46,7 +46,7 @@
 }
 
 * {
-    box-sizing: inherit; /* Dziedziczy ustawienie box-sizing z html, body */
+    box-sizing: inherit;
   }
 
 html body {

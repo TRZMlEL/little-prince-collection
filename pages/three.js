@@ -51,12 +51,6 @@ export default class Three {
     this.whiteScene.add(this.whiteBg);
     this.whiteBg.position.z = -1;
 
-    // this.box = new T.Mesh(
-    //     new T.BoxGeometry(0.3, 0.3, 1),
-    //     new T.MeshBasicMaterial({ color: 0x00ff00 })
-    // );
-    // this.whiteScene.add(this.box);
-
     this.setupPipeline();
     this.mouseEvents();
     this.setLights();
@@ -71,11 +65,9 @@ export default class Three {
         new T.MeshBasicMaterial({color: 0x000000, side: T.DoubleSide}));
     
     this.dummy = new T.Mesh(
-        // new T.PlaneGeometry(0.6, 0.6, 20, 20),
         new T.SphereGeometry(0.05, 20, 20),
         new T.MeshBasicMaterial({
             color: 0xffffff, 
-            // map: new T.TextureLoader().load(particle),
             transparent: true,
             opacity: 1.
         })
@@ -142,7 +134,6 @@ export default class Three {
     });
 
     this.planeMesh = new T.Mesh(this.planeGeometry, this.planeMaterial);
-    // this.scene.add(this.planeMesh);
   }
 
   render() {
@@ -174,9 +165,7 @@ export default class Three {
     let temp = this.targetA;
     this.targetA = this.targetB;
     this.targetB = temp;
-
-
-
+    
   }
 
   setResize() {

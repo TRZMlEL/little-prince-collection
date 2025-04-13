@@ -1,7 +1,6 @@
   <template>
     <div class="relative w-screen h-full pt-4 pb-4 px-4 lg:px-16 xl:px-32 little-prince bg-[url(/images/site-background.jpg)] bg-inherit bg-center">
-      <!-- <img src="../assets/covers/978-0-15-601404-5.jpg" alt="Book cover" class="h-full absolute right-0 bottom-0" /> -->
-      <!-- <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas> -->
+      <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
       <header class="flex gap-4 items-center mb-4 flex-wrap xl:flex-row">
         <div class="flex items-center gap-4">
           <!-- Skip to main content button for a11y -->
@@ -85,7 +84,6 @@
   const searchQuery = ref('');
   const router = useRouter();
 
-  // GSAP
   gsap.registerPlugin(ScrollTrigger);
 
   onMounted(async () => {
@@ -121,16 +119,16 @@
     });
 
     gsap.from('.titles', {
-      x: -50,            // Startowe przesunięcie w dół
-      opacity: 0,       // Zanikający efekt
+      x: -50,
+      opacity: 0,
       duration: 1.2,
       ease: "power3.out",
-      stagger: 0.2,     // Dodanie opóźnienia między elementami
+      stagger: 0.2,
       scrollTrigger: {
         trigger: titles,
-        start: "top 100%", // Animacja startuje, gdy 80% elementu wejdzie na ekran
+        start: "top 100%",
         toggleActions: "play none none none",
-        once: true       // Animacja uruchamia się tylko raz
+        once: true
       }
     });
   });
@@ -143,11 +141,11 @@
     : `/covers/${book.cover}`;
   };
 
-  // Unikalne wartości krajów i kontynentów
+  // Unique values of countries and continents
   const uniqueCountries = computed(() => [...new Set(books.value.map(book => book.country))]);
   const uniqueContinents = computed(() => [...new Set(books.value.map(book => book.continent))]);
 
-  // Grupowanie książek według języka
+  // group books by languages
   const booksByLanguage = computed(() => {
     return books.value.reduce((grouped, book) => {
       (grouped[book.language] ||= []).push(book);
@@ -155,16 +153,16 @@
     }, {});
   });
 
-  // Filtracja książek
+  // filter books
   const filteredBooks = computed(() => {
     let filtered = books.value;
 
-    // Filtracja po trybie
+    // filter mode
     if (selectedFilter.value === 'owned') {
       filtered = filtered.filter(book => book.owned);
     }
 
-    // Filtracja po języku
+    // filter by languages
     if (selectedLanguage.value) {
       if (selectedFilter.value === 'owned') {
         filtered = filtered.filter(book => book.language === selectedLanguage.value && book.owned);
@@ -181,12 +179,12 @@
       }
     }
 
-    // Filtracja po kraju
+    // filter by country
     if (selectedCountry.value) {
       filtered = filtered.filter(book => book.country === selectedCountry.value);
     }
 
-    // Filtracja po kontynencie
+    // filter by continent
     if (selectedContinent.value) {
       filtered = filtered.filter(book => book.continent === selectedContinent.value);
     }
@@ -199,13 +197,13 @@
       );
     }
 
-    // Sortowanie alfabetyczne po języku
+    // sort alphabetically by language
     filtered.sort((a, b) => a.language.localeCompare(b.language));
 
     return filtered;
   });
 
-  // Jeśli jesteśmy w "Wszystkie języki" i klikniemy książkę → przełączamy na "Wszystkie wydania" w tym języku
+  // Clicking on a book opens all editions in the given language.
   const handleBookClick = (book) => {
     if (selectedFilter.value === 'all-languages') {
       selectedFilter.value = 'all-editions';
@@ -218,14 +216,14 @@
   </script>
 
   <style scoped>
-  /* Ensure the canvas covers the entire background */
+  
   #background-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Ensure the canvas does not interfere with user interactions */
+    pointer-events: none; 
   }
 
   </style>

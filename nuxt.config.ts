@@ -1,10 +1,9 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 import glsl from "vite-plugin-glsl";
 
 export default defineNuxtConfig({
   app: {
-    baseURL: '/little-prince-collection/', // Zmień na nazwę repozytorium
+    baseURL: '/little-prince-collection/',
     head: {
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/little-prince-collection/favicon.ico' },
@@ -19,7 +18,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/**': { prerender: true } // Generowanie statycznych plików
+    '/**': { prerender: true }
   },
   ssr: false,
   compatibilityDate: "2024-11-01",
@@ -31,10 +30,4 @@ export default defineNuxtConfig({
       glsl(),
     ],
   },
-  // nitro: {
-  //   prerender: {
-  //     crawlLinks: false, // Wyłącza automatyczne znajdowanie stron do prerenderowania
-  //     routes: [] // Nie renderuje żadnych tras
-  //   },
-  // },
 });
