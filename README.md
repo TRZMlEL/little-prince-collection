@@ -11,20 +11,15 @@ This website showcases Oliwia Kurzeja’s collection of *The Little Prince* edit
 
 ### Desktop
 
-| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/) |
+| ![](assets/images/screenshots/desktop/index.png) | ![](assets/images/screenshots/desktop/filter.png) |
 |:--------------------------------------------------:|:------------------------------------------------:|
-| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/) |
-| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/) |
-| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/) |
-| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/watercolor.png) |
+| ![](assets/images/screenshots/desktop/book-details.png) | ![](assets/images/screenshots/desktop/watercolor.png) |
 
 
 ### Mobile
 
-| ![](assets/images/screenshots/mobile/loading.png) | ![](assets/images/screenshots/mobile/index.png) | ![](assets/images/screenshots/mobile/economy.png) |
+| ![](assets/images/screenshots/mobile/index.png) | ![](assets/images/screenshots/mobile/filter.png) | ![](assets/images/screenshots/mobile/book-details.png) |
 |:-------------------------------------------------:|:-----------------------------------------------:|:-------------------------------------------------:|
-| ![](assets/images/screenshots/mobile/tourism1.png) | ![](assets/images/screenshots/mobile/tourism2.png) | ![](assets/images/screenshots/mobile/cuisine.png) |
-| ![](assets/images/screenshots/mobile/language.png) | ![](assets/images/screenshots/mobile/quiz1.png) | ![](assets/images/screenshots/mobile/quiz2.png) |
 
 ## Tech Stack
 
