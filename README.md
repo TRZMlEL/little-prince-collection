@@ -7,6 +7,25 @@ This website showcases Oliwia Kurzeja’s collection of *The Little Prince* edit
 [![View the Collection](https://custom-icon-badges.demolab.com/badge/-View%20the%20Collection-3F5A36?style=for-the-badge&logo=little-prince "View the Collection")](https://trzmlel.github.io/little-prince-collection/)
 </div>
 
+## Screenshots
+
+### Desktop
+
+| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/) |
+|:--------------------------------------------------:|:------------------------------------------------:|
+| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/) |
+| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/) |
+| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/) |
+| ![](assets/images/screenshots/desktop/) | ![](assets/images/screenshots/desktop/watercolor.png) |
+
+
+### Mobile
+
+| ![](assets/images/screenshots/mobile/loading.png) | ![](assets/images/screenshots/mobile/index.png) | ![](assets/images/screenshots/mobile/economy.png) |
+|:-------------------------------------------------:|:-----------------------------------------------:|:-------------------------------------------------:|
+| ![](assets/images/screenshots/mobile/tourism1.png) | ![](assets/images/screenshots/mobile/tourism2.png) | ![](assets/images/screenshots/mobile/cuisine.png) |
+| ![](assets/images/screenshots/mobile/language.png) | ![](assets/images/screenshots/mobile/quiz1.png) | ![](assets/images/screenshots/mobile/quiz2.png) |
+
 ## Tech Stack
 
 Nuxt, Vue.js, GSAP, TailwindCSS, Three.js, Pages CMS

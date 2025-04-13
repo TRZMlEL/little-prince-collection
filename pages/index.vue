@@ -1,6 +1,6 @@
   <template>
     <div class="relative w-screen h-full pt-4 pb-4 px-4 lg:px-16 xl:px-32 little-prince bg-[url(/images/site-background.jpg)] bg-inherit bg-center">
-      <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+      <!-- <canvas id="background-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas> -->
       <header class="flex gap-4 items-center mb-4 flex-wrap xl:flex-row">
         <div class="flex items-center gap-4">
           <!-- Skip to main content button for a11y -->
@@ -216,7 +216,7 @@
   </script>
 
   <style scoped>
-  
+
   #background-canvas {
     position: fixed;
     top: 0;
