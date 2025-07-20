@@ -1,4 +1,4 @@
-media: public/covers
+media: covers
 content:
   - name: books
     label: Books
