@@ -194,5 +194,15 @@
     "title": "Малкият принц",
     "year": 2015,
     "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "isbn": "978-9385385360",
+    "owned": true,
+    "language": "Hindi",
+    "country": "Indie",
+    "continent": "Azja",
+    "publisher": "TEENAGE PUBLISHERS",
+    "title": "छोटा राजकुमार आंत्वान द सेंतेक्ज़्युपेरी",
+    "author": "Antoine de Saint-Exupéry"
   }
 ]
