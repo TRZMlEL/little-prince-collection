@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { getBookByIsbn, resolveAssetUrl } from '../sanity'
+import { t } from '../i18n/ui'
+
+const isbn = Astro.params.isbn || ''
+const locale = Astro.locals.locale
+const book = await getBookByIsbn(isbn, locale)
+
+if (!book) {
+  Astro.response.status = 404
+}
+
+const base = import.meta.env.BASE_URL || '/'
+const normalizedBase = base.endsWith('/') ? base : `${base}/`
+const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
+const resolvedCoverPath = resolveAssetUrl(book?.cover)
+const coverPath = resolvedCoverPath || placeholderCover
+const isMainPlaceholder = !resolvedCoverPath
+const hasNotes = Boolean(book?.notes?.trim())
+---
+
+<Layout title={book?.title || t(locale, 'book.notFound')} showSearch={false}>
+  <div class="px-4 py-8 md:px-16 lg:px-32">
+    {!book && <p class="text-(--night-sky) font-semibold">{t(locale, 'book.notFound')}</p>}
+    {book && (
+      <div class="space-y-8">
+        <h1 class="font-grandhotel text-5xl leading-tight text-(--night-sky) md:text-6xl">{book?.title}</h1>
+
+        <section class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
+          <div class="flex justify-center" transition:name={`book-cover-${book?.isbn}`}>
+            <img src={coverPath} alt={book?.title || t(locale, 'book.alt')} onerror={`this.onerror=null;this.src='${placeholderCover}';this.classList.add('is-placeholder-cover','cover-shadow-alpha')`} class:list={[
+              'cover-image',
+              'h-auto max-h-[70vh] w-full max-w-md object-contain lg:max-h-[calc(100vh-220px)]',
+              'cover-shadow-alpha',
+              { 'is-placeholder-cover': isMainPlaceholder },
+            ]} transition:name={`book-${book?.isbn}`} />
+          </div>
+
+          <div class="flex justify-center">
+            <table class="w-full border-collapse border-2 border-(--dark-night-sky)">
+              <tbody>
+                <tr>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.isbn')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.isbn}</td>
+                </tr>
+                <tr>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.title')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.title}</td>
+                </tr>
+                <tr>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.language')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.language}</td>
+                </tr>
+                {book?.region?.trim() && (
+                  <tr>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.region')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.region}</td>
+                  </tr>
+                )}
+                <tr>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.country')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.country}</td>
+                </tr>
+                {book?.publisher?.trim() && (
+                  <tr>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.publisher')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.publisher}</td>
+                  </tr>
+                )}
+                {book?.translator?.trim() && (
+                  <tr>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.translator')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.translator}</td>
+                  </tr>
+                )}
+                {book?.year != null && (
+                  <tr>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.year')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.year}</td>
+                  </tr>
+                )}
+                <tr>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.possessionDate')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.possessionDate || t(locale, 'book.empty')}</td>
+                </tr>
+                {book?.receivedFrom?.trim() && (
+                  <tr>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.receivedFrom')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.receivedFrom}</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+
+            {book?.otherCovers && book.otherCovers.length > 0 && (
+              <div id="otherCovers">
+                <h2 class="text-2xl font-bold text-(--night-sky)">{t(locale, 'book.otherCovers')}</h2>
+                <div class="mt-3 flex flex-wrap gap-4">
+                  {book.otherCovers.map((cover) => {
+                    const resolvedOtherCover = resolveAssetUrl(cover)
+                    const otherCoverPath = resolvedOtherCover || placeholderCover
+                    const isOtherPlaceholder = !resolvedOtherCover
+
+                    return (
+                      <img
+                        src={otherCoverPath}
+                        alt={t(locale, 'book.altThumb')}
+                        onerror={`this.onerror=null;this.src='${placeholderCover}';this.classList.add('is-placeholder-cover','cover-shadow-alpha')`}
+                        class:list={[
+                          'cover-image h-32 w-20 rounded-md object-cover',
+                          'cover-shadow-alpha',
+                          { 'is-placeholder-cover': isOtherPlaceholder },
+                        ]}
+                      />
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {hasNotes && (
+          <section class="bg-(--night-sky) p-6 text-(--light) shadow-(--shadow-night-sky) md:p-8">
+            <h2 class="mb-4 font-grandhotel text-4xl leading-none md:text-5xl">{t(locale, 'book.notesTitle')}</h2>
+            <div class="whitespace-pre-line leading-relaxed">{book?.notes?.trim()}</div>
+          </section>
+        )}
+      </div>
+    )}
+  </div>
+
+  <script>
+    const scrollToTop = () => {
+      window.scrollTo(0, 0)
+      requestAnimationFrame(() => window.scrollTo(0, 0))
+    }
+
+    scrollToTop()
+    document.addEventListener('astro:page-load', scrollToTop)
+    window.addEventListener('load', scrollToTop)
+  </script>
+</Layout>

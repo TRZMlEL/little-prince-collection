@@ -1,0 +1,112 @@
+---
+import { ClientRouter } from 'astro:transitions'
+import '../../assets/css/main.css'
+import 'lenis/dist/lenis.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { t } from '../i18n/ui'
+
+const {
+  title,
+  showSearch = true,
+} = Astro.props
+
+const base = import.meta.env.BASE_URL || '/'
+const backgroundImage = `${base}images/site-background.jpg`
+const locale = Astro.locals.locale
+const pageTitle = title || t(locale, 'header.title')
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate" />
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate" />
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate" />
+    <title>{pageTitle}</title>
+
+    <link rel="icon" type="image/x-icon" href={`${base}favicon/favicon.ico`} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon/icon0.svg`} />
+    <link rel="icon" type="image/png" sizes="96x96" href={`${base}favicon/icon1.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}favicon/apple-icon.png`} />
+    <link rel="manifest" href={`${base}site.webmanifest`} />
+
+    <ClientRouter />
+    <script is:inline>
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual'
+      }
+
+      const scrollToTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+        requestAnimationFrame(() => window.scrollTo(0, 0))
+      }
+
+      scrollToTop()
+      window.addEventListener('astro:page-load', scrollToTop)
+      window.addEventListener('load', scrollToTop)
+      window.addEventListener('pageshow', scrollToTop)
+    </script>
+    <script is:inline>
+      // @ts-nocheck
+      import gsap from 'gsap'
+      import { ScrollTrigger } from 'gsap/ScrollTrigger'
+      import Lenis from 'lenis'
+
+      gsap.registerPlugin(ScrollTrigger)
+
+      const lenis = new Lenis({
+        autoRaf: false,
+        smoothWheel: true,
+      })
+
+      lenis.on('scroll', ScrollTrigger.update)
+
+      const onTick = (time) => {
+        lenis.raf(time * 1000)
+      }
+
+      gsap.ticker.add(onTick)
+      gsap.ticker.lagSmoothing(0)
+
+      let isDisposed = false
+
+      const disposePage = () => {
+        if (isDisposed) return
+        isDisposed = true
+
+        gsap.ticker.remove(onTick)
+        lenis.destroy()
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+
+        document.removeEventListener('astro:before-swap', disposePage)
+        window.removeEventListener('pagehide', disposePage)
+      }
+
+      document.addEventListener('astro:before-swap', disposePage)
+      window.addEventListener('pagehide', disposePage)
+    </script>
+    <script is:inline>
+      console.log(
+        '%cCreated with love by Mateusz Trzmiel\n' +
+        '%chttps://www.trzmiel.art\n\n' +
+        '%c©2026 All rights reserved\n' +
+        'Code Licensed under MIT License\n' +
+        'Repository: https://github.com/TRZMlEL/little-prince-collection',
+        'color:#F4C542;font-size:14px;font-weight:bold;',
+        'color:#F4C542;font-size:12px;',
+        'color:#888;font-size:11px'
+      )
+    </script>
+  </head>
+  <body class="site-background flex min-h-dvh flex-col bg-inherit bg-center bg-fixed" style={`background-image: url(${backgroundImage});`}>
+    <Header title={t(locale, 'header.title')} showSearch={showSearch} locale={locale} />
+    <main class="relative w-full flex-1 mb-8 px-4 lg:px-32 xl:px-64">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

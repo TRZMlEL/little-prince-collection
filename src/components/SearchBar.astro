@@ -1,0 +1,85 @@
+---
+import type { Locale } from '../i18n/locale'
+
+interface Props {
+  placeholder?: string
+  searchAriaLabel?: string
+  clearAriaLabel?: string
+  locale: Locale
+}
+
+const {
+  placeholder = 'Szukaj po tytule, lokalizacji, jezyku lub ISBN',
+  searchAriaLabel = 'Szukaj',
+  clearAriaLabel = 'Wyczysc wyszukiwanie',
+} = Astro.props
+---
+
+<div class="w-full">
+  <div class="relative w-full">
+    <input
+      id="search-input"
+      type="text"
+      placeholder={placeholder}
+      class="w-full sm:w-full h-8 p-2 pr-10 bg-(--light) text-(--dark) font-lato placeholder:text-(--dark-night-sky) active:text-(--stars) text-shadow-red-900"
+    />
+    <button
+      id="search-button"
+      type="button"
+      aria-label={searchAriaLabel}
+      class="group/icon absolute right-2 top-1/2 -translate-y-1/2 cursor-text text-(--dark-night-sky)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path fill="currentColor" fill-rule="evenodd" d="M11.5 2.75a8.75 8.75 0 1 0 0 17.5a8.75 8.75 0 0 0 0-17.5M1.25 11.5c0-5.66 4.59-10.25 10.25-10.25S21.75 5.84 21.75 11.5c0 2.56-.939 4.902-2.491 6.698l3.271 3.272a.75.75 0 1 1-1.06 1.06l-3.272-3.271A10.2 10.2 0 0 1 11.5 21.75c-5.66 0-10.25-4.59-10.25-10.25" clip-rule="evenodd"/>
+      </svg>
+    </button>
+    <button
+      id="clear-search-input"
+      type="button"
+      aria-label={clearAriaLabel}
+      class="hidden group/icon absolute right-2 top-1/2 -translate-y-1/2 text-dark  active:text-(--stars) active:scale-95 cursor-pointer"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        class="block group-hover/icon:hidden"
+        aria-hidden="true"
+      >
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M11.142 20c-2.227 0-3.341 0-4.27-.501c-.93-.502-1.52-1.42-2.701-3.259l-.681-1.06C2.497 13.634 2 12.86 2 12s.497-1.634 1.49-3.18l.68-1.06c1.181-1.838 1.771-2.757 2.701-3.259S8.915 4 11.142 4h2.637c3.875 0 5.813 0 7.017 1.172S22 8.229 22 12s0 5.657-1.204 6.828S17.654 20 13.78 20z"/>
+          <path stroke-linecap="round" d="m15.5 9.5l-5 5m0-5l5 5"/>
+        </g>
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        class="hidden group-hover/icon:block"
+        aria-hidden="true"
+      >
+        <path fill="currentColor" fill-rule="evenodd" d="M6.871 19.499c.93.501 2.044.501 4.271.501h2.637c3.875 0 5.813 0 7.017-1.172S22 12 22 12s0-5.657-1.204-6.828S17.654 4 13.78 4h-2.637c-2.227 0-3.341 0-4.27.501c-.93.502-1.52 1.42-2.701 3.259L3.49 8.82C2.497 10.366 2 11.14 2 12s.497 1.634 1.49 3.18l.68 1.06c1.181 1.838 1.771 2.757 2.701 3.259m4.16-10.53A.75.75 0 0 0 9.97 10.03L11.94 12l-1.97 1.97a.75.75 0 1 0 1.06 1.06L13 13.06l1.97 1.97a.75.75 0 0 0 1.06-1.06L14.06 12l1.97-1.97a.75.75 0 0 0-1.06-1.06L13 10.94z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  // SearchBar component - buttons are controlled by parent page logic
+  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+  const searchButton = document.getElementById('search-button');
+
+  if (searchInput && searchButton) {
+    searchButton.addEventListener('click', () => {
+      searchInput.focus();
+    });
+  }
+</script>

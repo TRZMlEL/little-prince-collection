@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import icon from '../../public/favicon/icon1.png'
+import type { Locale } from '../i18n/locale'
+import { t } from '../i18n/ui'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+---
+
+<footer class="relative mt-auto flex w-screen flex-col items-center p-4 text-center bg-(--night-sky) text-(--light) shadow-(--shadow-night-sky-reverse) footer-anim">
+  <p class="font-grandhotel text-5xl mb-4 footer-tagline-anim">{t(locale, 'footer.tagline')}</p>
+  <Image src={icon} alt=" " class="w-8 h-8 footer-icon-anim"/>
+  <p class="footer-contact-anim">{t(locale, 'footer.contact')}: <a href="mailto:oliwia@kurzeja.it" class="underline underline-offset-2 hover:opacity-80">oliwia@kurzeja.it</a></p>
+  <p class="mt-2 text-xs footer-rights-anim">{t(locale, 'footer.rights')}</p>
+
+
+  <p class="mt-2 md:absolute bottom-4 left-4 text-(--light)/30 text-xs font-light footer-created-anim">
+    {t(locale, 'footer.createdBy')}
+    <a href="https://www.trzmiel.art/" target="_blank" rel="noreferrer" class="underline underline-offset-2 hover:opacity-80">
+      Mateusz Trzmiel
+    </a>
+  </p>
+</footer>

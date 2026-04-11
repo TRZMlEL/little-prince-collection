@@ -1,48 +1,106 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'fa-brands-400';
-    src: url('@/assets/fonts/font-awesome/fa-brands-400.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'fa-regular-400';
-    src: url('@/assets/fonts/font-awesome/fa-regular-400.ttf') format('truetype'),
-         url('@/assets/fonts/font-awesome/fa-regular-400.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-ThinItalic.woff2') format('woff2');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'fa-solid-900';
-    src: url('@/assets/fonts/font-awesome/fa-solid-900.ttf') format('truetype'),
-         url('@/assets/fonts/font-awesome/fa-solid-900.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'little-prince';
-    src: url('@/assets/fonts/little-prince/GrandHotel-Regular.otf') format('opentype');
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('@/assets/fonts/lato/Lato-BlackItalic.woff2') format('woff2');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+    font-family: 'GrandHotel';
+    src: url('@/assets/fonts/grandhotel/GrandHotel-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @theme {
-    --font-little-prince: "little-prince";
-    --font-fa-solid: "fa-solid-900";
-    --font-fa-regular: "fa-regular-400";
-    --font-fa-brands: "fa-brands-400";
+    --spacing: 0.25rem;
+    --font-lato: 'Lato';
+    --font-grandhotel: 'GrandHotel';
+    --light: #EEEFE1;
+    --dark: #0C0C0D;
     --night-sky: #1B1F3B;
     --dark-night-sky: #0E122B;
+    --light-stars: #fbd06a;
     --stars: #F4C542;
-    --shadow-night-sky: 0px 1px 4px #000;
+    --dark-stars: #896B25;
+    --shadow-night-sky: 0px 1px 4px var(--dark);
+    --shadow-night-sky-reverse: 0px -1px 4px var(--dark);
 }
 
 * {
@@ -52,6 +110,33 @@
 html body {
     box-sizing: border-box;
     overflow-x: hidden;
+    color: var(--dark);
+    background-color: var(--light);
+    font-family: var(--font-lato), system-ui, sans-serif;
+}
+
+.font-grandhotel {
+    font-family: var(--font-grandhotel), serif;
+}
+
+.font-lato {
+    font-family: var(--font-lato), system-ui, sans-serif;
+}
+
+body.site-background {
+    background-size: 20%;
+}
+
+@media (min-width: 768px) {
+    body.site-background {
+        background-size: 12%;
+    }
+}
+
+@media (min-width: 1280px) {
+    body.site-background {
+        background-size: 7%;
+    }
 }
 
 *:active{
@@ -66,4 +151,81 @@ html body {
     outline: 0.2rem solid var(--stars);
     outline-offset: 0.2rem;
     transition: all 0.2s ease-in-out;
+}
+
+::selection {
+    background-color: #92c5e6;
+    color: var(--light);
+}
+
+.cover-image {
+    --cover-shadow-filter: drop-shadow(0 0 0 transparent);
+    --cover-blur-filter: blur(0);
+    filter: var(--cover-shadow-filter) var(--cover-blur-filter);
+    transition: transform 0.2s ease-out, filter 0.15s ease-out;
+    will-change: transform, filter;
+}
+
+.cover-shadow-alpha {
+    --cover-shadow-filter: drop-shadow(0 2px 6px rgb(12 12 13 / 0.14));
+}
+
+.cover-shadow-alpha:hover {
+    --cover-shadow-filter: drop-shadow(0 4px 10px rgb(12 12 13 / 0.2));
+}
+
+.is-placeholder-cover {
+    --cover-blur-filter: blur(1.5px);
+}
+
+.is-placeholder-cover:hover {
+    --cover-blur-filter: blur(0);
+}
+
+.about-count-anim {
+
+}
+
+.about-description-anim {
+    /* No initial opacity, handled by GSAP */
+}
+
+.footer-tagline-anim {
+    /* Handled by GSAP */
+}
+
+.footer-icon-anim {
+    transform: scale(0.8);
+}
+
+.footer-contact-anim {
+    /* Handled by GSAP */
+}
+
+.footer-rights-anim {
+    /* Handled by GSAP */
+}
+
+.footer-created-anim {
+    /* Handled by GSAP */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent var(--light);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--stars);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-stars);
 }

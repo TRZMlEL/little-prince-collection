@@ -1,0 +1,118 @@
+---
+import type { Locale } from '../i18n/locale'
+import { LOCALE_COOKIE_NAME } from '../i18n/locale'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const initialLanguage = locale === 'en' ? 'EN' : 'PL'
+export const hydrate = 'load'
+---
+
+<button
+  type="button"
+  aria-label="Przelacz jezyk strony"
+  aria-pressed={locale === 'en' ? 'true' : 'false'}
+  data-language-toggle
+  data-language={initialLanguage}
+  data-locale-cookie={LOCALE_COOKIE_NAME}
+  class="header-toggle-anim cursor-pointer absolute right-4 top-3 inline-flex h-8 w-20 items-center bg-(--light) text-(--dark-night-sky) shadow-(--shadow-night-sky) focus-visible:outline-2 focus-visible:outline-(--stars) font-lato md:right-8 md:top-1/2 md:-translate-y-1/2 xl:right-20"
+>
+  <span
+    aria-hidden="true"
+    data-thumb
+    class="pointer-events-none absolute inset-y-0 left-0 z-0 w-1/2 bg-(--stars) transition-transform duration-200 ease-out"
+  ></span>
+  <span data-lang="PL" class="relative z-10 p-2 w-1/2 text-center text-sm font-semibold tracking-wide transition-opacity duration-200">PL</span>
+  <span data-lang="EN" class="relative z-10 p-2 w-1/2 text-center text-sm font-semibold tracking-wide transition-opacity duration-200 opacity-60">EN</span>
+</button>
+
+<script>
+  // @ts-nocheck
+  const skipPageEntryAnimationKey = 'skip-page-entry-animation'
+
+  // Use event delegation for better reliability
+  const initLanguageToggle = () => {
+    const toggle = document.querySelector('[data-language-toggle]')
+    if (!toggle || !(toggle instanceof HTMLButtonElement)) {
+      return
+    }
+
+    // Skip if already initialized
+    if (toggle.hasAttribute('data-initialized')) {
+      return
+    }
+    toggle.setAttribute('data-initialized', 'true')
+
+    const thumb = toggle.querySelector('[data-thumb]')
+    const plLabel = toggle.querySelector('[data-lang="PL"]')
+    const enLabel = toggle.querySelector('[data-lang="EN"]')
+    const cookieName = toggle.getAttribute('data-locale-cookie') || 'site-locale'
+
+    const cookieItem = document.cookie
+      .split(';')
+      .map((item) => item.trim())
+      .find((item) => item.startsWith(`${cookieName}=`))
+
+    const cookieLocale = cookieItem ? decodeURIComponent(cookieItem.split('=')[1] || '') : ''
+
+    const htmlLocale = document.documentElement.lang?.toLowerCase()
+    const preferredLanguage = cookieLocale === 'en' || htmlLocale === 'en' ? 'EN' : 'PL'
+    toggle.setAttribute('data-language', preferredLanguage)
+
+    const setLanguage = () => {
+      const isEnglish = toggle.getAttribute('data-language') === 'EN'
+
+      toggle.setAttribute('aria-pressed', String(isEnglish))
+      thumb?.classList.toggle('translate-x-full', isEnglish)
+
+      plLabel?.classList.toggle('opacity-60', isEnglish)
+      enLabel?.classList.toggle('opacity-60', !isEnglish)
+    }
+
+    setLanguage()
+
+    const handleClick = () => {
+      const nextLanguage = toggle.getAttribute('data-language') === 'PL' ? 'EN' : 'PL'
+      const nextLocale = nextLanguage.toLowerCase()
+
+      toggle.setAttribute('data-language', nextLanguage)
+      setLanguage()
+
+      document.cookie = `${cookieName}=${nextLocale}; path=/; max-age=31536000; samesite=lax`
+
+      try {
+        window.sessionStorage.setItem(skipPageEntryAnimationKey, 'true')
+      } catch {}
+
+      const url = new URL(window.location.href)
+      url.searchParams.set('lang', nextLocale)
+
+      const link = document.createElement('a')
+      link.href = url.href
+      link.style.position = 'absolute'
+      link.style.width = '0'
+      link.style.height = '0'
+      link.style.overflow = 'hidden'
+      link.style.opacity = '0'
+      link.setAttribute('aria-hidden', 'true')
+
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
+
+    toggle.addEventListener('click', handleClick)
+  }
+
+  // Initialize on load
+  initLanguageToggle()
+
+  // Re-initialize after Astro page transitions
+  document.addEventListener('astro:page-load', () => {
+    // Small delay to ensure DOM is updated
+    setTimeout(initLanguageToggle, 10)
+  })
+</script>

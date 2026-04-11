@@ -1,0 +1,684 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { getBooks } from '../sanity'
+import About from '../components/About.astro'
+import BooksGrid from '../components/BooksGrid.astro'
+import { t } from '../i18n/ui'
+
+const locale = Astro.locals.locale
+const books = await getBooks(locale)
+const base = import.meta.env.BASE_URL || '/'
+---
+
+<Layout title={t(locale, 'header.title')}>
+  <div>
+    <div id="about-collection-section">
+      <About count={books.length} locale={locale} />
+    </div>
+
+    <BooksGrid books={books} base={base} locale={locale} />
+  </div>
+
+  <script>
+    // @ts-nocheck
+    import gsap from 'gsap'
+    import { ScrollTrigger } from 'gsap/ScrollTrigger'
+    import Lenis from 'lenis'
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    // Smooth scrolling setup with Lenis
+    const lenis = new Lenis({
+      autoRaf: false,
+      smoothWheel: true,
+    })
+
+    lenis.on('scroll', ScrollTrigger.update)
+
+    const onTick = (time) => {
+      lenis.raf(time * 1000)
+    }
+
+    gsap.ticker.add(onTick)
+    gsap.ticker.lagSmoothing(0)
+
+    let isDisposed = false
+
+    // Cleanup function for page transitions
+    const disposePage = () => {
+      if (isDisposed) return
+      isDisposed = true
+
+      gsap.ticker.remove(onTick)
+      lenis.destroy()
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+
+      document.removeEventListener('astro:before-swap', disposePage)
+      window.removeEventListener('pagehide', disposePage)
+    }
+
+    document.addEventListener('astro:before-swap', disposePage)
+    window.addEventListener('pagehide', disposePage)
+
+
+
+    // Page entry animations
+    const initPageAnimation = () => {
+      console.log('Starting page entry animations...')
+      
+      const skipAnimation = consumeSkipPageEntryAnimation()
+      if (skipAnimation) return
+
+      const tl = gsap.timeline()
+
+      // Header animations
+      tl.fromTo('.header-anim', 
+        { y: -100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
+      )
+      .fromTo('.header-title-anim', 
+        { y: -30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+        '-=0.4'
+      )
+      .fromTo('.header-search-anim', 
+        { y: -30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+        '-=0.4'
+      )
+      .fromTo('.header-toggle-anim', 
+        { y: -30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+        '-=0.4'
+      )
+
+      // About section animations
+      .fromTo('.about-section-anim', 
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
+        '-=0.2'
+      )
+      .fromTo('.about-title-anim', 
+        { opacity: 0 },
+        { opacity: 1, duration: 0.6, ease: 'power2.out' }
+      )
+      .fromTo('.about-count-anim', 
+        { x: 50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+        '-=0.3'
+      )
+      .fromTo('.about-description-anim', 
+        { opacity: 0 },
+        { opacity: 1, duration: 0.6, ease: 'power2.out' },
+        '-=0.2'
+      )
+
+      // Books grid animations
+       .fromTo('.book-card-anim', {
+              y: 70,
+              opacity: 0,
+              rotationX: -25,
+              rotationY: 25,
+              transformOrigin: 'center center',
+            })
+
+            gsap.set(elements.title, {
+              x: -50,
+              opacity: 0,
+            })
+      // .fromTo('.book-card-anim', 
+      //   { scale: 0.8, opacity: 0, y: 30 },
+      //   { 
+      //     scale: 1, 
+      //     opacity: 1, 
+      //     y: 0, 
+      //     duration: 0.6, 
+      //     ease: 'power2.out',
+      //     stagger: 0.1 
+      //   },
+      //   '-=0.5'
+      // )
+    }
+
+    // Footer scroll-triggered animations
+    const initFooterAnimation = () => {
+      console.log('Initializing footer scroll trigger animation...')
+      
+      gsap.set('.footer-anim', { y: 100, opacity: 0 })
+
+      ScrollTrigger.create({
+        trigger: '.footer-anim',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        onEnter: () => {
+          gsap.to('.footer-anim', {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+            onComplete: () => {
+              // Footer elements animations
+              gsap.fromTo('.footer-tagline-anim', 
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5 }
+              )
+
+              gsap.fromTo('.footer-icon-anim', 
+                { scale: 0, rotation: -180 },
+                { scale: 1, rotation: 0, duration: 0.5, ease: 'back.out(1.7)' }
+              )
+
+              gsap.fromTo('.footer-contact-anim', 
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5, delay: 0.1 }
+              )
+
+              gsap.fromTo('.footer-rights-anim', 
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5, delay: 0.2 }
+              )
+
+              gsap.fromTo('.footer-created-anim', 
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5, delay: 0.3 }
+              )
+            }
+          })
+        }
+      })
+    }
+
+    // Initialize animations on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Initializing GSAP animations...')
+      initPageAnimation()
+      initFooterAnimation()
+    })
+
+    // Search functionality constants
+    const searchParamName = 'search'
+    const skipPageEntryAnimationKey = 'skip-page-entry-animation'
+    let initializedSearchInput = null
+
+    // Utility to check if page entry animation should be skipped
+    const consumeSkipPageEntryAnimation = () => {
+      try {
+        const shouldSkip = window.sessionStorage.getItem(skipPageEntryAnimationKey) === 'true'
+
+        if (shouldSkip) {
+          window.sessionStorage.removeItem(skipPageEntryAnimationKey)
+        }
+
+        return shouldSkip
+      } catch {
+        return false
+      }
+    }
+
+    // Text normalization utilities
+    const normalizeText = (value) =>
+      value
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+
+    const normalizeIsbn = (value) => normalizeText(value).replace(/[^0-9x]/g, '')
+
+    // ISBN detection
+    const isLikelyIsbnQuery = (value) => {
+      const trimmed = (value || '').trim()
+      if (!trimmed) return false
+
+      if (!/^[0-9xX\s-]+$/.test(trimmed)) return false
+
+      const digitsCount = (trimmed.match(/[0-9]/g) || []).length
+      return digitsCount >= 4
+    }
+
+    // Levenshtein distance for fuzzy matching
+    const levenshteinDistance = (first, second) => {
+      const firstLength = first.length
+      const secondLength = second.length
+
+      if (firstLength === 0) return secondLength
+      if (secondLength === 0) return firstLength
+
+      const distances = Array.from({ length: firstLength + 1 }, (_, index) => [index])
+
+      for (let column = 1; column <= secondLength; column += 1) {
+        distances[0][column] = column
+      }
+
+      for (let row = 1; row <= firstLength; row += 1) {
+        for (let column = 1; column <= secondLength; column += 1) {
+          const substitutionCost = first[row - 1] === second[column - 1] ? 0 : 1
+
+          distances[row][column] = Math.min(
+            distances[row - 1][column] + 1,
+            distances[row][column - 1] + 1,
+            distances[row - 1][column - 1] + substitutionCost
+          )
+        }
+      }
+
+      return distances[firstLength][secondLength]
+    }
+
+    // Similarity scoring for search
+    const calculateSimilarityScore = (query, searchable) => {
+      const normalizedQuery = normalizeText(query)
+      const normalizedSearchable = normalizeText(searchable)
+
+      if (!normalizedQuery) return 0
+
+      let baseScore = 0
+
+      if (normalizedSearchable === normalizedQuery) {
+        baseScore += 300
+      }
+
+      if (normalizedSearchable.startsWith(normalizedQuery)) {
+        baseScore += 220
+      }
+
+      if (normalizedSearchable.includes(normalizedQuery)) {
+        baseScore += 120
+      }
+
+      // ISBN comparison
+      const queryStripped = normalizedQuery.replace(/[-\s]/g, '')
+      const searchableStripped = normalizedSearchable.replace(/[-\s]/g, '')
+      if (queryStripped.length > 5) {
+        if (searchableStripped === queryStripped) {
+          baseScore += 300
+        } else if (searchableStripped.includes(queryStripped)) {
+          baseScore += 120
+        }
+      }
+
+      const queryWords = normalizedQuery.split(/\s+/).filter(Boolean)
+      const searchableWords = normalizedSearchable.split(/\s+/).filter(Boolean)
+
+      let tokenScore = 0
+
+      for (const queryWord of queryWords) {
+        const prefixWordMatch = searchableWords.some((searchableWord) => searchableWord.startsWith(queryWord))
+        if (prefixWordMatch) {
+          tokenScore += 120
+          continue
+        }
+
+        const exactWordMatch = searchableWords.includes(queryWord)
+        if (exactWordMatch) {
+          tokenScore += 80
+          continue
+        }
+
+        const bestWordSimilarity = searchableWords.reduce((bestScore, searchableWord) => {
+          if (!searchableWord) return bestScore
+
+          const maxLength = Math.max(queryWord.length, searchableWord.length)
+          if (maxLength === 0) return bestScore
+
+          const distance = levenshteinDistance(queryWord, searchableWord)
+          const similarity = 1 - distance / maxLength
+          return Math.max(bestScore, similarity)
+        }, 0)
+
+        if (bestWordSimilarity >= 0.6) {
+          tokenScore += Math.round(bestWordSimilarity * 60)
+        }
+      }
+
+      return baseScore + tokenScore
+    }
+
+    // Main search initialization
+    const initializeSearchPage = () => {
+      const searchInput = document.querySelector('#search-input')
+      const cards = Array.from(document.querySelectorAll('[data-book-card]'))
+      const grid = document.querySelector('#main-content')
+      const clearSearchButton = document.querySelector('#clear-search-input')
+      const aboutCollectionSection = document.querySelector('#about-collection-section')
+
+      if (!searchInput || !grid || cards.length === 0) return
+      if (initializedSearchInput === searchInput) return
+
+      initializedSearchInput = searchInput
+      const cardTriggers = []
+
+      // Sort cards by search score
+      const sortCardsByScore = (scoredCards) => {
+        scoredCards
+          .sort((first, second) => second.score - first.score)
+          .forEach(({ card }) => {
+            grid.appendChild(card)
+          })
+      }
+
+      // Kill existing scroll triggers
+      const killCardTriggers = () => {
+        cardTriggers.forEach((trigger) => trigger.kill())
+        cardTriggers.length = 0
+      }
+
+      // Get animation elements for a card
+      const getCardAnimationElements = (card) => {
+        const cover = card.querySelector('.covers')
+        const title = card.querySelector('.titles')
+        return {
+          cover,
+          title,
+          all: [cover, title].filter(Boolean),
+        }
+      }
+
+      // Set final animation state for a card
+      const setCardFinalState = (card) => {
+        const elements = getCardAnimationElements(card)
+
+        if (elements.cover) {
+          gsap.set(elements.cover, {
+            y: 0,
+            opacity: 1,
+            rotationX: 0,
+            rotationY: 0,
+            clearProps: 'transform',
+          })
+        }
+
+        if (elements.title) {
+          gsap.set(elements.title, {
+            x: 0,
+            opacity: 1,
+            clearProps: 'transform',
+          })
+        }
+      }
+
+      // Reset animation state for all cards
+      const resetAnimationStateForAllCards = () => {
+        cards.forEach((card) => {
+          delete card.dataset.hasAnimated
+        })
+      }
+
+      // Check if card is in viewport
+      const isCardInViewport = (card) => {
+        const rect = card.getBoundingClientRect()
+        return rect.top < window.innerHeight && rect.bottom > 0
+      }
+
+      // Setup scroll animations for visible cards
+      const setupVisibleCardsScrollAnimation = (options) => {
+        const skipAnimationForInitiallyVisible = options?.skipAnimationForInitiallyVisible ?? false
+        killCardTriggers()
+
+        const visibleCards = cards.filter((card) => card.style.display !== 'none')
+
+        visibleCards.forEach((card) => {
+          const hasAnimated = card.dataset.hasAnimated === 'true'
+          const elements = getCardAnimationElements(card)
+          const shouldSkipAnimation = skipAnimationForInitiallyVisible && isCardInViewport(card)
+
+          if (shouldSkipAnimation) {
+            setCardFinalState(card)
+            card.dataset.hasAnimated = 'true'
+            return
+          }
+
+          if (!hasAnimated && elements.all.length > 0) {
+            gsap.set(elements.cover, {
+              y: 70,
+              opacity: 0,
+              rotationX: -25,
+              rotationY: 25,
+              transformOrigin: 'center center',
+            })
+
+            gsap.set(elements.title, {
+              x: -50,
+              opacity: 0,
+            })
+          }
+        })
+
+        if (visibleCards.length === 0) {
+          ScrollTrigger.refresh()
+          return
+        }
+
+        // Animate individual card
+        const animateCard = (card, delay) => {
+          if (card.dataset.hasAnimated === 'true') return
+
+          const elements = getCardAnimationElements(card)
+
+          if (elements.cover) {
+            gsap.to(elements.cover, {
+              y: 0,
+              opacity: 1,
+              rotationX: 0,
+              rotationY: 0,
+              duration: 1.2,
+              delay,
+              ease: 'power1.inOut',
+            })
+          }
+
+          if (elements.title) {
+            gsap.to(elements.title, {
+              x: 0,
+              opacity: 1,
+              duration: 0.9,
+              delay: delay + 0.08,
+              ease: 'power3.out',
+            })
+          }
+
+          card.dataset.hasAnimated = 'true'
+        }
+
+        // Batch scroll triggers
+        const batchTriggers = ScrollTrigger.batch(visibleCards, {
+          start: 'top 90%',
+          once: true,
+          onEnter: (enteredElements) => {
+            const enteredCards = enteredElements
+
+            enteredCards
+              .slice()
+              .sort((first, second) => {
+                const firstRect = first.getBoundingClientRect()
+                const secondRect = second.getBoundingClientRect()
+
+                if (firstRect.top !== secondRect.top) {
+                  return firstRect.top - secondRect.top
+                }
+
+                return firstRect.left - secondRect.left
+              })
+              .forEach((card, index) => {
+                animateCard(card, index * 0.1)
+              })
+          },
+        })
+
+        if (Array.isArray(batchTriggers)) {
+          cardTriggers.push(...batchTriggers)
+        } else if (batchTriggers) {
+          cardTriggers.push(batchTriggers)
+        }
+
+        ScrollTrigger.refresh()
+      }
+
+      // Safe wrapper for animation setup
+      const safeSetupVisibleCardsScrollAnimation = (options = {}) => {
+        try {
+          setupVisibleCardsScrollAnimation(options)
+        } catch (error) {
+          console.error('Scroll animation setup failed:', error)
+        }
+      }
+
+      // Apply search filter
+      const applyFilter = () => {
+        const rawQuery = (searchInput.value || '').trim()
+        const query = rawQuery.toLowerCase()
+
+        if (!query) {
+          cards.forEach((card) => {
+            card.style.display = 'flex'
+            grid.appendChild(card)
+          })
+          return
+        }
+
+        if (isLikelyIsbnQuery(rawQuery)) {
+          const normalizedQuery = normalizeIsbn(rawQuery)
+
+          const scoredCards = cards.map((card) => {
+            const normalizedIsbn =
+              card.getAttribute('data-isbn-normalized') ||
+              normalizeIsbn(card.getAttribute('data-isbn') || '')
+
+            let score = 0
+
+            if (normalizedIsbn && normalizedQuery) {
+              if (normalizedIsbn === normalizedQuery) {
+                score = 1000
+              } else if (normalizedIsbn.startsWith(normalizedQuery)) {
+                score = 700
+              } else if (normalizedIsbn.includes(normalizedQuery)) {
+                score = 400
+              }
+            }
+
+            const visible = score > 0
+            card.style.display = visible ? 'flex' : 'none'
+            return { card, score }
+          })
+
+          sortCardsByScore(scoredCards)
+          return
+        }
+
+        const scoredCards = cards.map((card) => {
+          const searchable = (card.getAttribute('data-search') || '').toLowerCase()
+          const score = calculateSimilarityScore(query, searchable)
+          const visible = score > 0
+          card.style.display = visible ? 'flex' : 'none'
+          return { card, score }
+        })
+
+        sortCardsByScore(scoredCards)
+      }
+
+      // Sync URL with search query
+      const syncUrlWithQuery = () => {
+        const query = (searchInput.value || '').trim()
+        const url = new URL(window.location.href)
+
+        if (query) {
+          url.searchParams.set(searchParamName, query)
+        } else {
+          url.searchParams.delete(searchParamName)
+        }
+
+        window.history.replaceState({}, '', url)
+      }
+
+      // Apply initial query from URL
+      const applyInitialQueryFromUrl = () => {
+        const url = new URL(window.location.href)
+        const initialQuery = url.searchParams.get(searchParamName)
+
+        if (initialQuery) {
+          searchInput.value = initialQuery
+        }
+      }
+
+      // Update button visibility (search/clear icons)
+      const updateButtonVisibility = () => {
+        const searchButton = document.getElementById('search-button');
+        const clearButton = document.getElementById('clear-search-input');
+
+        if (!searchButton || !clearButton) return;
+
+        const hasQuery = Boolean((searchInput.value || '').trim());
+        if (hasQuery) {
+          searchButton.classList.add('hidden');
+          clearButton.classList.remove('hidden');
+        } else {
+          clearButton.classList.add('hidden');
+          searchButton.classList.remove('hidden');
+        }
+      }
+
+      // Update about section visibility
+      const updateAboutSectionVisibility = () => {
+        if (!aboutCollectionSection) return
+
+        const hasQuery = Boolean((searchInput.value || '').trim())
+        aboutCollectionSection.classList.toggle('hidden', hasQuery)
+      }
+
+      // Handle search input
+      const onSearchInput = () => {
+        applyFilter()
+        syncUrlWithQuery()
+        updateButtonVisibility()
+        updateAboutSectionVisibility()
+        resetAnimationStateForAllCards()
+        safeSetupVisibleCardsScrollAnimation({ skipAnimationForInitiallyVisible: true })
+      }
+
+      // Handle clear search
+      const onClearSearch = () => {
+        searchInput.value = ''
+        onSearchInput()
+        searchInput.focus()
+      }
+
+      // Add button visibility update to clear button click handler
+      const originalOnClearSearch = onClearSearch
+      const enhancedOnClearSearch = () => {
+        originalOnClearSearch()
+        updateButtonVisibility()
+      }
+
+      // Initial setup
+      const shouldSkipInitialCardsAnimation = consumeSkipPageEntryAnimation()
+      const hasInitialCardsAnimationRun = window.__initialBooksAnimationDone === true
+
+      applyInitialQueryFromUrl()
+      applyFilter()
+      updateButtonVisibility()
+      updateAboutSectionVisibility()
+
+      if (shouldSkipInitialCardsAnimation) {
+        resetAnimationStateForAllCards()
+        safeSetupVisibleCardsScrollAnimation({ skipAnimationForInitiallyVisible: true })
+        window.__initialBooksAnimationDone = true
+      } else if (hasInitialCardsAnimationRun) {
+        cards.forEach((card) => {
+          setCardFinalState(card)
+          card.dataset.hasAnimated = 'true'
+        })
+        window.__initialBooksAnimationDone = true
+        ScrollTrigger.refresh()
+      } else {
+        safeSetupVisibleCardsScrollAnimation()
+        window.__initialBooksAnimationDone = true
+      }
+
+      searchInput.addEventListener('input', onSearchInput)
+      clearSearchButton?.addEventListener('click', enhancedOnClearSearch)
+    }
+
+    // Initialize search on page load
+    initializeSearchPage()
+    document.addEventListener('astro:page-load', initializeSearchPage)
+  </script>
+</Layout>

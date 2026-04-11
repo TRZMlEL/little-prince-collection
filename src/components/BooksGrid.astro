@@ -1,0 +1,62 @@
+---
+import { resolveAssetUrl, type Book } from '../sanity'
+import type { Locale } from '../i18n/locale'
+import { t } from '../i18n/ui'
+
+interface Props {
+  books: Book[]
+  base: string
+  locale: Locale
+}
+
+const { books, base, locale } = Astro.props
+const normalizedBase = base.endsWith('/') ? base : `${base}/`
+const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
+---
+
+<main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full flex-wrap" id="main-content">
+  {books.map((book) => {
+    const resolvedCover = resolveAssetUrl(book.cover)
+    const cover = resolvedCover || placeholderCover
+    const isPlaceholder = !resolvedCover
+    const isbnNormalized = (book.isbn ?? '').replace(/[-\s]/g, '')
+    const searchable = [book.isbn, isbnNormalized, book.title, book.language, book.region, book.country, book.continent]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase()
+
+    return (
+      <a
+        href={`${base}${book.isbn}`}
+        class="cursor-pointer flex flex-col items-center w-full z-10 book-card-anim"
+        data-book-card
+        data-search={searchable}
+        data-isbn={book.isbn ?? ''}
+        data-isbn-normalized={isbnNormalized}
+        transition:name={`book-${book.isbn}`}
+        transition:persist
+      >
+        <div class="covers" transition:name={`book-cover-${book.isbn}`}>
+          <img
+            src={cover}
+            alt={t(locale, 'book.altThumb')}
+            onerror={`this.onerror=null;this.src='${placeholderCover}';this.classList.add('is-placeholder-cover','cover-shadow-alpha')`}
+            class:list={[
+              'cover-image transition duration-400 ease-out min-h-72 max-h-72 object-cover hover:scale-105',
+              'cover-shadow-alpha',
+              { 'is-placeholder-cover': isPlaceholder },
+            ]}
+          />
+        </div>
+        <div class="mt-2 text-center titles">
+          <h2 class="text-lg font-semibold">{book.language}</h2>
+          <p class="text-sm text-gray-500">{book.title}</p>
+          <p class="text-xs text-gray-400">
+            {book.region && <>{book.region} - </>}
+            {book.country} - {book.continent}
+          </p>
+        </div>
+      </a>
+    )
+  })}
+</main>

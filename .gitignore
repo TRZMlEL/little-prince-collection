@@ -6,6 +6,10 @@
 .cache
 dist
 
+# Astro / Vercel generated outputs
+.astro
+.vercel
+
 # Node dependencies
 node_modules
 
