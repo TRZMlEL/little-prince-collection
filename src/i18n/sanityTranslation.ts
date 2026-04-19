@@ -17,10 +17,12 @@ const translateText = async (text: string, locale: Locale) => {
   const cacheKey = buildCacheKey(locale, text)
   const cached = translationCache.get(cacheKey)
   if (cached) {
+    console.log(`Cached translation for "${text}" -> "${cached}"`)
     return cached
   }
 
   try {
+    console.log(`Translating "${text}" to ${locale}`)
     const params = new URLSearchParams({
       client: 'gtx',
       sl: 'auto',
@@ -36,11 +38,13 @@ const translateText = async (text: string, locale: Locale) => {
     })
 
     if (!response.ok) {
+      console.log(`Translation failed for "${text}": ${response.status}`)
       return text
     }
 
     const payload = (await response.json()) as unknown
     if (!Array.isArray(payload) || !Array.isArray(payload[0])) {
+      console.log(`Invalid response for "${text}":`, payload)
       return text
     }
 
@@ -49,10 +53,12 @@ const translateText = async (text: string, locale: Locale) => {
       .filter((part): part is string => typeof part === 'string' && part.length > 0)
       .join('')
 
+    console.log(`Translated "${text}" -> "${translated}"`)
     const value = translated || text
     translationCache.set(cacheKey, value)
     return value
-  } catch {
+  } catch (error) {
+    console.error(`Translation error for "${text}":`, error)
     return text
   }
 }

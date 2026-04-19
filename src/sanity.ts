@@ -21,7 +21,7 @@ export interface Book {
 }
 
 const BOOKS_QUERY = `
-*[_type == "book" && defined(isbn)] | order(language asc) {
+*[_type == "book" && defined(isbn)] {
   isbn,
   "cover": select(
     defined(cover.asset) => cover.asset->url,
@@ -141,7 +141,10 @@ const normalizeBook = (book: Partial<Book>): Book => ({
 export const getBooks = async (locale: Locale = 'pl') => {
   const result = await sanityClient.fetch<Partial<Book>[]>(BOOKS_QUERY)
   const books = (result || []).map(normalizeBook)
-  return translateBooks(books, locale)
+  console.log('Original books:', books.map(b => ({ language: b.language, title: b.title })))
+  const translatedBooks = await translateBooks(books, locale)
+  console.log('Translated books:', translatedBooks.map(b => ({ language: b.language, title: b.title })))
+  return translatedBooks.sort((a, b) => (a.language || '').localeCompare(b.language || ''))
 }
 
 export const getBookByIsbn = async (isbn: string, locale: Locale = 'pl') => {

@@ -69,75 +69,62 @@ const base = import.meta.env.BASE_URL || '/'
       const skipAnimation = consumeSkipPageEntryAnimation()
       if (skipAnimation) return
 
-      const tl = gsap.timeline()
+      try {
+        const tl = gsap.timeline()
 
-      // Header animations
-      tl.fromTo('.header-anim', 
-        { y: -100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
-      )
-      .fromTo('.header-title-anim', 
-        { y: -30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
-        '-=0.4'
-      )
-      .fromTo('.header-search-anim', 
-        { y: -30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
-        '-=0.4'
-      )
-      .fromTo('.header-toggle-anim', 
-        { y: -30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
-        '-=0.4'
-      )
+        // Header animations
+        tl.fromTo('.header-anim', 
+          { y: -100, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
+        )
+        .fromTo('.header-title-anim', 
+          { y: -30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+          '-=0.4'
+        )
+        .fromTo('.header-search-anim', 
+          { y: -30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+          '-=0.4'
+        )
+        .fromTo('.header-toggle-anim', 
+          { y: -30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+          '-=0.4'
+        )
 
-      // About section animations
-      .fromTo('.about-section-anim', 
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
-        '-=0.2'
-      )
-      .fromTo('.about-title-anim', 
-        { opacity: 0 },
-        { opacity: 1, duration: 0.6, ease: 'power2.out' }
-      )
-      .fromTo('.about-count-anim', 
-        { x: 50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
-        '-=0.3'
-      )
-      .fromTo('.about-description-anim', 
-        { opacity: 0 },
-        { opacity: 1, duration: 0.6, ease: 'power2.out' },
-        '-=0.2'
-      )
+        // About section animations
+        .fromTo('.about-section-anim', 
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
+          '-=0.2'
+        )
+        .fromTo('.about-title-anim', 
+          { opacity: 0 },
+          { opacity: 1, duration: 0.6, ease: 'power2.out' }
+        )
+        .fromTo('.about-count-anim', 
+          { x: 50, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+          '-=0.3'
+        )
+        .fromTo('.about-description-anim', 
+          { opacity: 0 },
+          { opacity: 1, duration: 0.6, ease: 'power2.out' },
+          '-=0.2'
+        )
 
-      // Books grid animations
-       .fromTo('.book-card-anim', {
-              y: 70,
-              opacity: 0,
-              rotationX: -25,
-              rotationY: 25,
-              transformOrigin: 'center center',
-            })
-
-            gsap.set(elements.title, {
-              x: -50,
-              opacity: 0,
-            })
-      // .fromTo('.book-card-anim', 
-      //   { scale: 0.8, opacity: 0, y: 30 },
-      //   { 
-      //     scale: 1, 
-      //     opacity: 1, 
-      //     y: 0, 
-      //     duration: 0.6, 
-      //     ease: 'power2.out',
-      //     stagger: 0.1 
-      //   },
-      //   '-=0.5'
-      // )
+        // Books grid animations
+         .fromTo('.book-card-anim', {
+                y: 70,
+                opacity: 0,
+                rotationX: -25,
+                rotationY: 25,
+                transformOrigin: 'center center',
+          })
+      } catch (error) {
+        console.error('Animation error:', error)
+      }
     }
 
     // Footer scroll-triggered animations
