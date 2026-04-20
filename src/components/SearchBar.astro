@@ -21,12 +21,14 @@ const {
       id="search-input"
       type="text"
       placeholder={placeholder}
+      data-i18n-placeholder="search.placeholder"
       class="w-full sm:w-full h-8 p-2 pr-10 bg-(--light) text-(--dark) font-lato placeholder:text-(--dark-night-sky) active:text-(--stars) text-shadow-red-900"
     />
     <button
       id="search-button"
       type="button"
       aria-label={searchAriaLabel}
+      data-i18n-aria="search.searchLabel"
       class="group/icon absolute right-2 top-1/2 -translate-y-1/2 cursor-text text-(--dark-night-sky)"
     >
       <svg
@@ -82,4 +84,38 @@ const {
       searchInput.focus();
     });
   }
+
+  // Obsługa zmiany języka
+  const translations: Record<string, Record<string, string>> = {
+    pl: {
+      'search.placeholder': 'Szukaj po tytule, lokalizacji, języku lub ISBN',
+      'search.searchLabel': 'Szukaj',
+      'search.clearLabel': 'Wyczyść wyszukiwanie',
+    },
+    en: {
+      'search.placeholder': 'Search by title, location, language or ISBN',
+      'search.searchLabel': 'Search',
+      'search.clearLabel': 'Clear search',
+    },
+  }
+
+  const updateSearchBarTranslations = (locale: string) => {
+    const input = document.getElementById('search-input') as HTMLInputElement | null
+    const button = document.getElementById('search-button')
+    const clearButton = document.getElementById('clear-search-input')
+
+    if (input && translations[locale]?.['search.placeholder']) {
+      input.placeholder = translations[locale]['search.placeholder']
+    }
+    if (button && translations[locale]?.['search.searchLabel']) {
+      button.setAttribute('aria-label', translations[locale]['search.searchLabel'])
+    }
+    if (clearButton && translations[locale]?.['search.clearLabel']) {
+      clearButton.setAttribute('aria-label', translations[locale]['search.clearLabel'])
+    }
+  }
+
+  document.addEventListener('localeChange', (e: any) => {
+    updateSearchBarTranslations(e.detail.locale)
+  })
 </script>

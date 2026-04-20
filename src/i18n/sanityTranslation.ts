@@ -75,8 +75,11 @@ const translatedFields: Array<keyof Book> = [
 ]
 
 export const translateBook = async (book: Book, locale: Locale): Promise<Book> => {
+  // Zawsze tworzymy kopię, żeby nie mutować oryginalnego obiektu
+  const translatedBook: Book = { ...book }
+
   if (locale === 'pl') {
-    return book
+    return translatedBook
   }
 
   const translatedEntries = await Promise.all(
@@ -91,7 +94,6 @@ export const translateBook = async (book: Book, locale: Locale): Promise<Book> =
     })
   )
 
-  const translatedBook: Book = { ...book }
   translatedEntries.forEach(([field, value]) => {
     switch (field) {
       case 'language':
@@ -127,8 +129,13 @@ export const translateBook = async (book: Book, locale: Locale): Promise<Book> =
 }
 
 export const translateBooks = async (books: Book[], locale: Locale): Promise<Book[]> => {
-  if (locale === 'pl' || books.length === 0) {
-    return books
+  if (books.length === 0) {
+    return []
+  }
+
+  if (locale === 'pl') {
+    // Zwracamy kopię tablicy z kopiami obiektów
+    return books.map((book) => ({ ...book }))
   }
 
   return Promise.all(books.map((book) => translateBook(book, locale)))

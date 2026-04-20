@@ -18,6 +18,7 @@ const base = import.meta.env.BASE_URL || '/'
   <a
     href="#main-content"
     class="fixed left-4 top-4 z-50 text-xs bg-(--night-sky) text-white focus:text-(--stars) px-4 py-2 shadow-(--shadow-night-sky) text-center -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100 transition-all duration-200"
+    data-i18n="header.skipToMain"
   >
     {t(locale, 'header.skipToMain')}
   </a>
@@ -26,6 +27,7 @@ const base = import.meta.env.BASE_URL || '/'
     <a
       href={base}
       class="inline-block text-(--light) hover:text-(--stars) active:text-(--light) transition-transform duration-150 active:scale-95"
+      data-i18n="header.title"
     >
       {title || t(locale, 'header.title')}
     </a>
@@ -45,4 +47,32 @@ const base = import.meta.env.BASE_URL || '/'
 
   <LanguageToggle client:visible locale={locale} />
 </header>
+
+<script>
+  // Słownik tłumaczeń dla Header
+  const translations: Record<string, Record<string, string>> = {
+    pl: {
+      'header.skipToMain': 'Przejdź do głównej treści',
+      'header.title': 'Kolekcja OK',
+    },
+    en: {
+      'header.skipToMain': 'Skip to main content',
+      'header.title': 'Collection',
+    },
+  }
+
+  const updateHeaderTranslations = (locale: string) => {
+    const elements = document.querySelectorAll('[data-i18n]')
+    elements.forEach((el) => {
+      const key = el.getAttribute('data-i18n')
+      if (key && translations[locale]?.[key]) {
+        el.textContent = translations[locale][key]
+      }
+    })
+  }
+
+  document.addEventListener('localeChange', (e: any) => {
+    updateHeaderTranslations(e.detail.locale)
+  })
+</script>
 

@@ -115,13 +115,24 @@ const base = import.meta.env.BASE_URL || '/'
         )
 
         // Books grid animations
-         .fromTo('.book-card-anim', {
-                y: 70,
-                opacity: 0,
-                rotationX: -25,
-                rotationY: 25,
-                transformOrigin: 'center center',
-          })
+        .fromTo('.book-card-anim', 
+          {
+            y: 70,
+            opacity: 0,
+            rotationX: -25,
+            rotationY: 25,
+            transformOrigin: 'center center',
+          },
+          {
+            y: 0,
+            opacity: 1,
+            rotationX: 0,
+            rotationY: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            stagger: 0.05,
+          }
+        )
       } catch (error) {
         console.error('Animation error:', error)
       }

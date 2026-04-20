@@ -13,13 +13,48 @@ const { count, locale } = Astro.props
 <section aria-labelledby="about-collection-title" class="mb-8 w-full about-section-anim">
   <div class="bg-(--night-sky) text-white shadow-(--shadow-night-sky) p-4">
     <div class="flex items-center justify-between gap-4 mb-2 flex-wrap">
-      <h2 id="about-collection-title" class="font-grandhotel text-3xl text-(--stars) about-title-anim">{t(locale, 'about.title')}</h2>
-      <p class="text-sm bg-(--stars) text-(--night-sky) px-2 py-1 font-semibold about-count-anim">
+      <h2 id="about-collection-title" class="font-grandhotel text-3xl text-(--stars) about-title-anim" data-i18n="about.title">{t(locale, 'about.title')}</h2>
+      <p class="text-sm bg-(--stars) text-(--night-sky) px-2 py-1 font-semibold about-count-anim" data-i18n="about.count" data-count={count}>
         {t(locale, 'about.count', { count })}
       </p>
     </div>
-    <p class="leading-relaxed text-justify text-(--light) about-description-anim">
+    <p class="leading-relaxed text-justify text-(--light) about-description-anim" data-i18n="about.description">
       {t(locale, 'about.description')}
     </p>
   </div>
 </section>
+
+<script>
+  const translations: Record<string, Record<string, string>> = {
+    pl: {
+      'about.title': 'O kolekcji',
+      'about.count': 'Ilość książek w kolekcji: {count}',
+      'about.description': "Zbieram wydania \"Małego Księcia\" Antoine'a de Saint-Exupéry'ego z całego świata, każde kupione lokalnie w miejscowym języku. Lubię samodzielnie szukać tych książek w trakcie podróży, ale cieszą mnie też egzemplarze przywiezione przez znajomych, jeśli pochodzą prosto z danego kraju. Buduję kolekcję z historią pełną wspomnień.",
+    },
+    en: {
+      'about.title': 'About the collection',
+      'about.count': 'Number of books in the collection: {count}',
+      'about.description': "I collect editions of Antoine de Saint-Exupéry's \"The Little Prince\" from around the world, each purchased locally in the local language. I like to search for these books myself during my travels, but I also appreciate copies brought by friends if they come directly from a given country. I'm building a collection full of memories.",
+    },
+  }
+
+  const updateAboutTranslations = (locale: string) => {
+    const elements = document.querySelectorAll('[data-i18n]')
+    elements.forEach((el) => {
+      const key = el.getAttribute('data-i18n')
+      if (key && translations[locale]?.[key]) {
+        // Obsługa {count} placeholder
+        let text = translations[locale][key]
+        if (key === 'about.count') {
+          const count = el.getAttribute('data-count') || ''
+          text = text.replace('{count}', count)
+        }
+        el.textContent = text
+      }
+    })
+  }
+
+  document.addEventListener('localeChange', (e: any) => {
+    updateAboutTranslations(e.detail.locale)
+  })
+</script>

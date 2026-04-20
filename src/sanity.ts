@@ -145,10 +145,12 @@ export const getBooks = async (locale: Locale = 'pl') => {
   const translatedBooks = await translateBooks(books, locale)
   console.log('Translated books:', translatedBooks.map(b => ({ language: b.language, title: b.title })))
   return translatedBooks.sort((a, b) => (a.language || '').localeCompare(b.language || ''))
+  console.log("pobrano książki")
 }
 
 export const getBookByIsbn = async (isbn: string, locale: Locale = 'pl') => {
   const result = await sanityClient.fetch<Partial<Book> | null>(BOOK_BY_ISBN_QUERY, { isbn })
+  console.log("pobrano książki po isbn")
   if (!result) {
     return null
   }

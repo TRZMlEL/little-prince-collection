@@ -14,7 +14,7 @@ const normalizedBase = base.endsWith('/') ? base : `${base}/`
 const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
 ---
 
-<main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full flex-wrap" id="main-content">
+<main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full flex-wrap" id="main-content" data-locale={locale} data-base={base}>
   {books.map((book) => {
     const resolvedCover = resolveAssetUrl(book.cover)
     const cover = resolvedCover || placeholderCover
@@ -60,3 +60,154 @@ const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
     )
   })}
 </main>
+
+<script>
+  // @ts-nocheck
+
+  let currentLocale = ''
+  let base = ''
+  let normalizedBase = ''
+  let placeholderCover = ''
+
+  const getGridMeta = () => {
+    const mainContent = document.getElementById('main-content')
+    if (!mainContent) return null
+    return {
+      locale: mainContent.dataset.locale || 'pl',
+      base: mainContent.dataset.base || '/',
+      element: mainContent,
+    }
+  }
+
+  const createBookHtml = (book: any) => {
+    const resolvedCover = typeof book.cover === 'string' && book.cover.startsWith('http')
+      ? book.cover
+      : (book.cover ? `${normalizedBase}${book.cover}` : placeholderCover)
+    const cover = resolvedCover || placeholderCover
+    const isPlaceholder = !resolvedCover
+    const isbnNormalized = String(book.isbn ?? '').replace(/[-\s]/g, '')
+    const searchable = [book.isbn, isbnNormalized, book.title, book.language, book.region, book.country, book.continent]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase()
+
+    return `
+      <a
+        href="${base}${book.isbn}"
+        class="cursor-pointer flex flex-col items-center w-full z-10 book-card-anim"
+        data-book-card
+        data-search="${searchable}"
+        data-isbn="${book.isbn ?? ''}"
+        data-isbn-normalized="${isbnNormalized}"
+      >
+        <div class="covers">
+          <img
+            src="${cover}"
+            alt="Book cover thumbnail"
+            onerror="this.onerror=null;this.src='${placeholderCover}';this.classList.add('is-placeholder-cover','cover-shadow-alpha')"
+            class="cover-image transition duration-400 ease-out min-h-72 max-h-72 object-cover hover:scale-105 cover-shadow-alpha ${isPlaceholder ? 'is-placeholder-cover' : ''}"
+          />
+        </div>
+        <div class="mt-2 text-center titles">
+          <h2 class="text-lg font-semibold">${book.language}</h2>
+          <p class="text-sm text-gray-500">${book.title}</p>
+          <p class="text-xs text-gray-400">
+            ${book.region ? `${book.region} - ` : ''}${book.country} - ${book.continent}
+          </p>
+        </div>
+      </a>
+    `
+  }
+
+  const updateBooks = async (newLocale: string) => {
+    const meta = getGridMeta()
+    if (!meta) return
+
+    currentLocale = meta.locale
+    base = meta.base
+    normalizedBase = base.endsWith('/') ? base : `${base}/`
+    placeholderCover = `${normalizedBase}images/placeholder-cover.png`
+
+    if (newLocale === currentLocale) return
+
+    try {
+      // Cache-busting żeby wymusić pobranie świeżych danych z translacją
+      const cacheBuster = Date.now()
+      const response = await fetch(`/api/books?locale=${newLocale}&_t=${cacheBuster}`)
+      if (!response.ok) throw new Error('Failed to fetch books')
+
+      const data = await response.json()
+      const books = Array.isArray(data.books) ? data.books : []
+      const sortedBooks = books.sort((a, b) => ((a.language || '') as string).localeCompare((b.language || '') as string))
+
+      // KROK 1: Zapamiętaj pozycje WSZYSTKICH kart PRZED zmianą DOM
+      const existingCards = Array.from(meta.element.querySelectorAll('[data-book-card]')) as HTMLElement[]
+      const oldPositions = new Map<string, { x: number; y: number }>()
+      existingCards.forEach((card) => {
+        const isbn = card.getAttribute('data-isbn')
+        if (isbn) {
+          const rect = card.getBoundingClientRect()
+          oldPositions.set(isbn, { x: rect.left, y: rect.top })
+        }
+      })
+
+      // KROK 2: Wstaw nowe karty (z nowymi tłumaczeniami)
+      meta.element.innerHTML = sortedBooks.map(createBookHtml).join('')
+      meta.element.dataset.locale = newLocale
+      currentLocale = newLocale
+
+      // KROK 3: Animuj tylko karty które ZMIENIŁY pozycję (300ms)
+      const newCards = Array.from(meta.element.querySelectorAll('[data-book-card]')) as HTMLElement[]
+      newCards.forEach((card) => {
+        const isbn = card.getAttribute('data-isbn')
+        if (!isbn) return
+
+        const oldPos = oldPositions.get(isbn)
+        if (!oldPos) {
+          // Nowa karta - fade in
+          card.animate(
+            [{ opacity: 0, transform: 'scale(0.95)' }, { opacity: 1, transform: 'scale(1)' }],
+            {
+              duration: 300,
+              easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              fill: 'forwards',
+            }
+          )
+          return
+        }
+
+        // Sprawdź czy pozycja się zmieniła
+        const newRect = card.getBoundingClientRect()
+        const deltaX = oldPos.x - newRect.left
+        const deltaY = oldPos.y - newRect.top
+
+        // Animuj TYLKO jeśli faktycznie się przesunęło (większe niż 1px)
+        if (Math.abs(deltaX) > 1 || Math.abs(deltaY) > 1) {
+          card.animate(
+            [
+              { transform: `translate(${deltaX}px, ${deltaY}px)` },
+              { transform: 'translate(0, 0)' },
+            ],
+            {
+              duration: 300,
+              easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              fill: 'forwards',
+            }
+          )
+        }
+        // Karty które nie zmieniły pozycji - brak animacji (zostają na miejscu)
+      })
+
+      console.log('Books updated for locale:', newLocale)
+    } catch (error) {
+      console.error('Error updating books:', error)
+    }
+  }
+
+  document.addEventListener('localeChange', (event: any) => {
+    const newLocale = event.detail.locale
+    if (newLocale && newLocale !== currentLocale) {
+      updateBooks(newLocale)
+    }
+  })
+</script>
