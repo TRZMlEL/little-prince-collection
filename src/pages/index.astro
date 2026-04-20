@@ -138,59 +138,10 @@ const base = import.meta.env.BASE_URL || '/'
       }
     }
 
-    // Footer scroll-triggered animations
-    const initFooterAnimation = () => {
-      console.log('Initializing footer scroll trigger animation...')
-      
-      gsap.set('.footer-anim', { y: 100, opacity: 0 })
-
-      ScrollTrigger.create({
-        trigger: '.footer-anim',
-        start: 'top 80%',
-        end: 'bottom 20%',
-        onEnter: () => {
-          gsap.to('.footer-anim', {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power2.out',
-            onComplete: () => {
-              // Footer elements animations
-              gsap.fromTo('.footer-tagline-anim', 
-                { opacity: 0 },
-                { opacity: 1, duration: 0.5 }
-              )
-
-              gsap.fromTo('.footer-icon-anim', 
-                { scale: 0, rotation: -180 },
-                { scale: 1, rotation: 0, duration: 0.5, ease: 'back.out(1.7)' }
-              )
-
-              gsap.fromTo('.footer-contact-anim', 
-                { opacity: 0 },
-                { opacity: 1, duration: 0.5, delay: 0.1 }
-              )
-
-              gsap.fromTo('.footer-rights-anim', 
-                { opacity: 0 },
-                { opacity: 1, duration: 0.5, delay: 0.2 }
-              )
-
-              gsap.fromTo('.footer-created-anim', 
-                { opacity: 0 },
-                { opacity: 1, duration: 0.5, delay: 0.3 }
-              )
-            }
-          })
-        }
-      })
-    }
-
     // Initialize animations on DOM ready
     document.addEventListener('DOMContentLoaded', () => {
       console.log('Initializing GSAP animations...')
       initPageAnimation()
-      initFooterAnimation()
     })
 
     // Search functionality constants
