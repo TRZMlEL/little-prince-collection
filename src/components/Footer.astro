@@ -26,8 +26,9 @@ const { locale } = Astro.props
   </p>
 </footer>
 
-<script>
-  const translations: Record<string, Record<string, string>> = {
+<script is:inline>
+  // @ts-nocheck
+  const translations = {
     pl: {
       'footer.tagline': 'Kolekcja tworzona z podróży i wspomnień',
       'footer.contact': 'Kontakt',
@@ -42,7 +43,7 @@ const { locale } = Astro.props
     },
   }
 
-  const updateFooterTranslations = (locale: string) => {
+  const updateFooterTranslations = (locale) => {
     const elements = document.querySelectorAll('footer [data-i18n]')
     elements.forEach((el) => {
       const key = el.getAttribute('data-i18n')
@@ -52,7 +53,7 @@ const { locale } = Astro.props
     })
   }
 
-  document.addEventListener('localeChange', (e: any) => {
+  document.addEventListener('localeChange', (e) => {
     updateFooterTranslations(e.detail.locale)
   })
 </script>
