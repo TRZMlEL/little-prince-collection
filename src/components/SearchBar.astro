@@ -74,9 +74,9 @@ const {
   </div>
 </div>
 
-<script>
+<script type="module">
   // SearchBar component - buttons are controlled by parent page logic
-  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+  const searchInput = document.getElementById('search-input');
   const searchButton = document.getElementById('search-button');
 
   if (searchInput && searchButton) {
@@ -86,7 +86,7 @@ const {
   }
 
   // Obsługa zmiany języka
-  const translations: Record<string, Record<string, string>> = {
+  const translations = {
     pl: {
       'search.placeholder': 'Szukaj po tytule, lokalizacji, języku lub ISBN',
       'search.searchLabel': 'Szukaj',
@@ -99,8 +99,8 @@ const {
     },
   }
 
-  const updateSearchBarTranslations = (locale: string) => {
-    const input = document.getElementById('search-input') as HTMLInputElement | null
+  const updateSearchBarTranslations = (locale) => {
+    const input = document.getElementById('search-input')
     const button = document.getElementById('search-button')
     const clearButton = document.getElementById('clear-search-input')
 
@@ -115,7 +115,7 @@ const {
     }
   }
 
-  document.addEventListener('localeChange', (e: any) => {
+  document.addEventListener('localeChange', (e) => {
     updateSearchBarTranslations(e.detail.locale)
   })
 </script>

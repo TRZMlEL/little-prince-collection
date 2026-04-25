@@ -14,31 +14,30 @@ const { locale } = Astro.props
 <footer class="relative mt-auto flex w-screen flex-col items-center p-4 text-center bg-(--night-sky) text-(--light) shadow-(--shadow-night-sky-reverse)">
   <p class="font-grandhotel text-5xl mb-4" data-i18n="footer.tagline">{t(locale, 'footer.tagline')}</p>
   <Image src={icon} alt=" " class="w-8 h-8"/>
-  <p class="footer-contact-anim" data-i18n="footer.contact">{t(locale, 'footer.contact')}: <a href="mailto:oliwia@kurzeja.it" class="underline underline-offset-2 hover:opacity-80">oliwia@kurzeja.it</a></p>
+  <p class="footer-contact-anim"><span data-i18n="footer.contact">{t(locale, 'footer.contact')}</span>: <a href="mailto:oliwia@kurzeja.it" class="underline underline-offset-2 hover:opacity-80">oliwia@kurzeja.it</a></p>
   <p class="mt-2 text-xs" data-i18n="footer.rights">{t(locale, 'footer.rights')}</p>
 
 
-  <p class="mt-2 md:absolute bottom-4 left-4 text-(--light)/30 text-xs font-light" data-i18n="footer.createdBy">
-    {t(locale, 'footer.createdBy')}
+  <p class="mt-2 md:absolute bottom-4 left-4 text-(--light)/30 text-xs font-light"><span data-i18n="footer.createdBy">{t(locale, 'footer.createdBy')}</span>
     <a href="https://www.trzmiel.art/" target="_blank" rel="noreferrer" class="underline underline-offset-2 hover:opacity-80">
       Mateusz Trzmiel
     </a>
   </p>
 </footer>
 
-<script is:inline>
+<script is:inline type="module">
   // @ts-nocheck
   const translations = {
     pl: {
       'footer.tagline': 'Kolekcja tworzona z podróży i wspomnień',
       'footer.contact': 'Kontakt',
-      'footer.rights': 'Wszelkie prawa zastrzeżone',
+      'footer.rights': '©2026 Oliwia Kurzeja, Mateusz Trzmiel • Wszelkie prawa zastrzeżone',
       'footer.createdBy': 'Stworzone przez',
     },
     en: {
       'footer.tagline': 'Collection created from travels and memories',
       'footer.contact': 'Contact',
-      'footer.rights': 'All rights reserved',
+      'footer.rights': '©2026 Oliwia Kurzeja, Mateusz Trzmiel • All rights reserved',
       'footer.createdBy': 'Created by',
     },
   }

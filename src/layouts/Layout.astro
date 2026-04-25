@@ -50,7 +50,7 @@ const pageTitle = title || t(locale, 'header.title')
       window.addEventListener('load', scrollToTop)
       window.addEventListener('pageshow', scrollToTop)
     </script>
-    <script is:inline>
+    <script is:inline type="module">
       // @ts-nocheck
       import gsap from 'gsap'
       import { ScrollTrigger } from 'gsap/ScrollTrigger'

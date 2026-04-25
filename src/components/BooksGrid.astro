@@ -61,7 +61,7 @@ const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
   })}
 </main>
 
-<script>
+<script type="module">
   // @ts-nocheck
 
   let currentLocale = ''
@@ -79,7 +79,7 @@ const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
     }
   }
 
-  const createBookHtml = (book: any) => {
+  const createBookHtml = (book) => {
     const resolvedCover = typeof book.cover === 'string' && book.cover.startsWith('http')
       ? book.cover
       : (book.cover ? `${normalizedBase}${book.cover}` : placeholderCover)
@@ -119,7 +119,7 @@ const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
     `
   }
 
-  const updateBooks = async (newLocale: string) => {
+  const updateBooks = async (newLocale) => {
     const meta = getGridMeta()
     if (!meta) return
 
@@ -138,11 +138,11 @@ const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
 
       const data = await response.json()
       const books = Array.isArray(data.books) ? data.books : []
-      const sortedBooks = books.sort((a, b) => ((a.language || '') as string).localeCompare((b.language || '') as string))
+      const sortedBooks = books.sort((a, b) => String(a.language || '').localeCompare(String(b.language || '')))
 
       // KROK 1: Zapamiętaj pozycje WSZYSTKICH kart PRZED zmianą DOM
-      const existingCards = Array.from(meta.element.querySelectorAll('[data-book-card]')) as HTMLElement[]
-      const oldPositions = new Map<string, { x: number; y: number }>()
+      const existingCards = Array.from(meta.element.querySelectorAll('[data-book-card]'))
+      const oldPositions = new Map()
       existingCards.forEach((card) => {
         const isbn = card.getAttribute('data-isbn')
         if (isbn) {
@@ -157,7 +157,7 @@ const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
       currentLocale = newLocale
 
       // KROK 3: Animuj tylko karty które ZMIENIŁY pozycję (300ms)
-      const newCards = Array.from(meta.element.querySelectorAll('[data-book-card]')) as HTMLElement[]
+      const newCards = Array.from(meta.element.querySelectorAll('[data-book-card]'))
       newCards.forEach((card) => {
         const isbn = card.getAttribute('data-isbn')
         if (!isbn) return
@@ -204,7 +204,7 @@ const placeholderCover = `${normalizedBase}images/placeholder-cover.png`
     }
   }
 
-  document.addEventListener('localeChange', (event: any) => {
+  document.addEventListener('localeChange', (event) => {
     const newLocale = event.detail.locale
     if (newLocale && newLocale !== currentLocale) {
       updateBooks(newLocale)

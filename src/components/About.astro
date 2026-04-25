@@ -10,7 +10,7 @@ interface Props {
 const { count, locale } = Astro.props
 ---
 
-<section aria-labelledby="about-collection-title" class="mb-8 w-full about-section-anim">
+<section aria-labelledby="about-collection-title" class="mb-8 w-full about-section-anim" data-about-section>
   <div class="bg-(--night-sky) text-white shadow-(--shadow-night-sky) p-4">
     <div class="flex items-center justify-between gap-4 mb-2 flex-wrap">
       <h2 id="about-collection-title" class="font-grandhotel text-3xl text-(--stars) about-title-anim" data-i18n="about.title">{t(locale, 'about.title')}</h2>
@@ -24,7 +24,7 @@ const { count, locale } = Astro.props
   </div>
 </section>
 
-<script is:inline>
+<script is:inline type="module">
   // @ts-nocheck
   const translations = {
     pl: {
@@ -34,13 +34,13 @@ const { count, locale } = Astro.props
     },
     en: {
       'about.title': 'About the collection',
-      'about.count': 'Number of books in the collection: {count}',
+      'about.count': 'Books in the collection: {count}',
       'about.description': "I collect editions of Antoine de Saint-Exupéry's \"The Little Prince\" from around the world, each purchased locally in the local language. I like to search for these books myself during my travels, but I also appreciate copies brought by friends if they come directly from a given country. I'm building a collection full of memories.",
     },
   }
 
   const updateAboutTranslations = (locale) => {
-    const elements = document.querySelectorAll('[data-i18n]')
+    const elements = document.querySelectorAll('[data-about-section] [data-i18n]')
     elements.forEach((el) => {
       const key = el.getAttribute('data-i18n')
       if (key && translations[locale]?.[key]) {

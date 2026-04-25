@@ -32,14 +32,14 @@ const base = import.meta.env.BASE_URL || '/'
   </div>
 </Layout>
 
-<script>
+<script type="module">
   // @ts-nocheck
   import gsap from 'gsap'
 
   // Infinite floating animation for planet images
   const animatePlanets = () => {
-    const leftPlanet = document.querySelector('img[alt=""]') as HTMLImageElement
-    const rightPlanet = document.querySelectorAll('img[alt=""]')[1] as HTMLImageElement
+    const leftPlanet = document.querySelector('img[alt=""]')
+    const rightPlanet = document.querySelectorAll('img[alt=""]')[1]
 
     if (leftPlanet && rightPlanet) {
       // Left planet animation
