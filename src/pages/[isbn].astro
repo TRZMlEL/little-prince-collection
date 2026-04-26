@@ -21,15 +21,15 @@ const hasNotes = Boolean(book?.notes?.trim())
 ---
 
 <Layout title={book?.title || t(locale, 'book.notFound')} showSearch={false}>
-  <div class="px-4 py-8 md:px-16 lg:px-32">
-    {!book && <p class="text-(--night-sky) font-semibold">{t(locale, 'book.notFound')}</p>}
+  <div id="book-details" class="px-4 py-8 md:px-16 lg:px-32" data-book-isbn={book?.isbn}>
+    {!book && <p class="text-(--night-sky) font-semibold" data-i18n="book.notFound">{t(locale, 'book.notFound')}</p>}
     {book && (
       <div class="space-y-8">
-        <h1 class="font-grandhotel text-5xl leading-tight text-(--night-sky) md:text-6xl">{book?.title}</h1>
+        <h1 class="font-grandhotel text-5xl leading-tight text-(--night-sky) md:text-6xl" data-book-field="pageTitle">{book?.title}</h1>
 
         <section class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
           <div class="flex justify-center" transition:name={`book-cover-${book?.isbn}`}>
-            <img src={coverPath} alt={book?.title || t(locale, 'book.alt')} onerror={`this.onerror=null;this.src='${placeholderCover}';this.classList.add('is-placeholder-cover','cover-shadow-alpha')`} class:list={[
+            <img id="book-cover" data-book-cover src={coverPath} alt={book?.title || t(locale, 'book.alt')} onerror={`this.onerror=null;this.src='${placeholderCover}';this.classList.add('is-placeholder-cover','cover-shadow-alpha')`} class:list={[
               'cover-image',
               'h-auto max-h-[70vh] w-full max-w-md object-contain lg:max-h-[calc(100vh-220px)]',
               'cover-shadow-alpha',
@@ -41,53 +41,53 @@ const hasNotes = Boolean(book?.notes?.trim())
             <table class="w-full border-collapse border-2 border-(--dark-night-sky)">
               <tbody>
                 <tr>
-                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.isbn')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.isbn">{t(locale, 'book.table.isbn')}:</td>
                   <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.isbn}</td>
                 </tr>
                 <tr>
-                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.title')}:</td>
-                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.title}</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.title">{t(locale, 'book.table.title')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-book-field="title">{book?.title}</td>
                 </tr>
                 <tr>
-                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.language')}:</td>
-                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.language}</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.language">{t(locale, 'book.table.language')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-book-field="language">{book?.language}</td>
                 </tr>
                 {book?.region?.trim() && (
                   <tr>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.region')}:</td>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.region}</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.region">{t(locale, 'book.table.region')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-book-field="region">{book.region}</td>
                   </tr>
                 )}
                 <tr>
-                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.country')}:</td>
-                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.country}</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.country">{t(locale, 'book.table.country')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-book-field="country">{book?.country}</td>
                 </tr>
                 {book?.publisher?.trim() && (
                   <tr>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.publisher')}:</td>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.publisher}</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.publisher">{t(locale, 'book.table.publisher')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-book-field="publisher">{book.publisher}</td>
                   </tr>
                 )}
                 {book?.translator?.trim() && (
                   <tr>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.translator')}:</td>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.translator}</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.translator">{t(locale, 'book.table.translator')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-book-field="translator">{book.translator}</td>
                   </tr>
                 )}
                 {book?.year != null && (
                   <tr>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.year')}:</td>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.year}</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.year">{t(locale, 'book.table.year')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-book-field="year">{book.year}</td>
                   </tr>
                 )}
                 <tr>
-                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.possessionDate')}:</td>
-                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book?.possessionDate || t(locale, 'book.empty')}</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.possessionDate">{t(locale, 'book.table.possessionDate')}:</td>
+                  <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-book-field="possessionDate" data-i18n={book?.possessionDate ? undefined : 'book.empty'}>{book?.possessionDate || t(locale, 'book.empty')}</td>
                 </tr>
                 {book?.receivedFrom?.trim() && (
                   <tr>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{t(locale, 'book.table.receivedFrom')}:</td>
-                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)">{book.receivedFrom}</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-i18n="book.table.receivedFrom">{t(locale, 'book.table.receivedFrom')}:</td>
+                    <td class="border-2 border-(--dark-night-sky) bg-(--night-sky) px-4 py-2 text-(--light)" data-book-field="receivedFrom">{book.receivedFrom}</td>
                   </tr>
                 )}
               </tbody>
@@ -95,7 +95,7 @@ const hasNotes = Boolean(book?.notes?.trim())
 
             {book?.otherCovers && book.otherCovers.length > 0 && (
               <div id="otherCovers">
-                <h2 class="text-2xl font-bold text-(--night-sky)">{t(locale, 'book.otherCovers')}</h2>
+                <h2 class="text-2xl font-bold text-(--night-sky)" data-i18n="book.otherCovers">{t(locale, 'book.otherCovers')}</h2>
                 <div class="mt-3 flex flex-wrap gap-4">
                   {book.otherCovers.map((cover) => {
                     const resolvedOtherCover = resolveAssetUrl(cover)
@@ -106,6 +106,7 @@ const hasNotes = Boolean(book?.notes?.trim())
                       <img
                         src={otherCoverPath}
                         alt={t(locale, 'book.altThumb')}
+                        data-i18n-alt="book.altThumb"
                         onerror={`this.onerror=null;this.src='${placeholderCover}';this.classList.add('is-placeholder-cover','cover-shadow-alpha')`}
                         class:list={[
                           'cover-image h-32 w-20 rounded-md object-cover',
@@ -123,8 +124,8 @@ const hasNotes = Boolean(book?.notes?.trim())
 
         {hasNotes && (
           <section class="bg-(--night-sky) p-6 text-(--light) shadow-(--shadow-night-sky) md:p-8">
-            <h2 class="mb-4 font-grandhotel text-4xl leading-none md:text-5xl">{t(locale, 'book.notesTitle')}</h2>
-            <div class="whitespace-pre-line leading-relaxed">{book?.notes?.trim()}</div>
+            <h2 class="mb-4 font-grandhotel text-4xl leading-none md:text-5xl" data-i18n="book.notesTitle">{t(locale, 'book.notesTitle')}</h2>
+            <div class="whitespace-pre-line leading-relaxed" data-book-field="notes">{book?.notes?.trim()}</div>
           </section>
         )}
       </div>
@@ -132,13 +133,145 @@ const hasNotes = Boolean(book?.notes?.trim())
   </div>
 
   <script>
+    type LocaleKey = 'pl' | 'en'
+
+    const translations: Record<LocaleKey, Record<string, string>> = {
+      pl: {
+        'book.notFound': 'Nie znaleziono książki.',
+        'book.otherCovers': 'Inne okładki',
+        'book.altThumb': 'Okładka książki',
+        'book.empty': '—',
+        'book.notesTitle': 'O egzemplarzu',
+        'book.table.isbn': 'ISBN',
+        'book.table.title': 'Tytuł',
+        'book.table.language': 'Język',
+        'book.table.region': 'Region',
+        'book.table.country': 'Kraj',
+        'book.table.publisher': 'Wydawnictwo',
+        'book.table.translator': 'Tłumaczenie',
+        'book.table.year': 'Rok wydania',
+        'book.table.possessionDate': 'Data posiadania',
+        'book.table.receivedFrom': 'Otrzymana od',
+      },
+      en: {
+        'book.notFound': 'Book not found.',
+        'book.otherCovers': 'Other covers',
+        'book.altThumb': 'Book cover',
+        'book.empty': '—',
+        'book.notesTitle': 'About this book',
+        'book.table.isbn': 'ISBN',
+        'book.table.title': 'Title',
+        'book.table.language': 'Language',
+        'book.table.region': 'Region',
+        'book.table.country': 'Country',
+        'book.table.publisher': 'Publisher',
+        'book.table.translator': 'Translator',
+        'book.table.year': 'Publication year',
+        'book.table.possessionDate': 'Date acquired',
+        'book.table.receivedFrom': 'Received from',
+      },
+    }
+
+    const getBookIsbn = () => {
+      return document.querySelector('#book-details')?.getAttribute('data-book-isbn') || ''
+    }
+
+    const updateBookPageTranslations = (locale: LocaleKey) => {
+      const localeBundle = translations[locale]
+      if (!localeBundle) return
+
+      document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n')
+        if (key && localeBundle[key]) {
+          el.textContent = localeBundle[key]
+        }
+      })
+
+      document.querySelectorAll<HTMLElement>('[data-i18n-alt]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-alt')
+        if (key && localeBundle[key]) {
+          el.setAttribute('alt', localeBundle[key])
+        }
+      })
+    }
+
+    const updateBookFields = (bookData: Record<string, unknown>, locale: LocaleKey) => {
+      const localeBundle = translations[locale]
+      const setField = (field: string, value: unknown) => {
+        const element = document.querySelector<HTMLElement>(`[data-book-field="${field}"]`)
+        if (!element) return
+
+        if (field === 'possessionDate' && (value == null || String(value).trim() === '')) {
+          element.textContent = localeBundle['book.empty']
+          return
+        }
+
+        element.textContent = value == null ? '' : String(value)
+      }
+
+      setField('pageTitle', bookData.title)
+      setField('title', bookData.title)
+      setField('language', bookData.language)
+      setField('region', bookData.region)
+      setField('country', bookData.country)
+      setField('publisher', bookData.publisher)
+      setField('translator', bookData.translator)
+      setField('year', bookData.year)
+      setField('possessionDate', bookData.possessionDate)
+      setField('receivedFrom', bookData.receivedFrom)
+      setField('notes', bookData.notes)
+
+      const cover = document.querySelector<HTMLImageElement>('#book-cover')
+      if (cover && bookData.title) {
+        cover.alt = String(bookData.title)
+      }
+    }
+
+    const fetchBookByIsbn = async (isbn: string, locale: LocaleKey) => {
+      if (!isbn) return null
+
+      try {
+        const cacheBuster = Date.now()
+        const response = await fetch(`/api/book?isbn=${encodeURIComponent(isbn)}&locale=${locale}&_t=${cacheBuster}`)
+        if (!response.ok) return null
+
+        const payload = await response.json()
+        return payload.book ?? null
+      } catch (error) {
+        console.error('Failed to fetch translated book:', error)
+        return null
+      }
+    }
+
     const scrollToTop = () => {
       window.scrollTo(0, 0)
       requestAnimationFrame(() => window.scrollTo(0, 0))
     }
 
+    const getCurrentLocale = (): LocaleKey => {
+      return document.documentElement.lang?.toLowerCase() === 'en' ? 'en' : 'pl'
+    }
+
+    let currentLocale: LocaleKey = getCurrentLocale()
+
+    const handleLocaleChange = async (newLocale: LocaleKey) => {
+      updateBookPageTranslations(newLocale)
+      if (newLocale === currentLocale) return
+
+      const isbn = getBookIsbn()
+      const translatedBook = await fetchBookByIsbn(isbn, newLocale)
+      if (translatedBook) {
+        updateBookFields(translatedBook, newLocale)
+      }
+      currentLocale = newLocale
+    }
+
     scrollToTop()
     document.addEventListener('astro:page-load', scrollToTop)
     window.addEventListener('load', scrollToTop)
+    document.addEventListener('localeChange', (rawEvent: Event) => {
+      const localeEvent = rawEvent as unknown as CustomEvent<{ locale: LocaleKey }>
+      handleLocaleChange(localeEvent.detail.locale)
+    })
   </script>
 </Layout>
